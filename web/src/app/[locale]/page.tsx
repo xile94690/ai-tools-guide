@@ -19,7 +19,7 @@ export default async function LocaleHome({
   return (
     <div className="flex flex-1 flex-col">
       <section className="bg-zinc-900 text-white">
-        <div className="mx-auto max-w-6xl px-4 py-14 text-center">
+        <div className="shell py-14 text-center">
           <h1 className="text-3xl font-black sm:text-4xl">{d.siteName}</h1>
           <p className="mx-auto mt-3 max-w-xl text-zinc-300">{d.tagline}</p>
           <div className="mx-auto mt-6 max-w-xl">
@@ -34,7 +34,7 @@ export default async function LocaleHome({
         </div>
       </section>
 
-      <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-10">
+      <main className="shell flex-1 py-10">
         <h2 className="text-lg font-bold">{d.categories}</h2>
         <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
           {categories.map((c) => {

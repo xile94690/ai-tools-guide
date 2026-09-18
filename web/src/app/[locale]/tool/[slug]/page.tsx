@@ -65,7 +65,7 @@ export default async function ToolPage({
 
   return (
     <div className="flex flex-1 flex-col">
-      <main className="mx-auto w-full max-w-4xl flex-1 px-4 py-10">
+      <main className="shell flex-1 py-10">
         <BackLink locale={locale} />
 
         <section className="relative mt-4 overflow-hidden rounded-3xl border border-zinc-200 bg-white px-6 py-8 sm:px-10">

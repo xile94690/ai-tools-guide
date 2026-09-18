@@ -32,7 +32,7 @@ export default async function SearchPage({
   const list = kw ? searchTools(kw, locale) : [];
 
   return (
-    <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-10">
+    <main className="shell flex-1 py-10">
       <BackLink locale={locale} />
       <h1 className="mt-2 text-2xl font-black">
         {kw ? `${d.search}：${kw}` : d.search}

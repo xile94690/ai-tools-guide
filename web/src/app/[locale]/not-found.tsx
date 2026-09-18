@@ -11,7 +11,7 @@ export default function NotFound() {
   const locale: Locale = pathname === "/en" || pathname.startsWith("/en/") ? "en" : "zh";
   const d = t(locale);
   return (
-    <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-20 text-center">
+    <main className="shell flex-1 py-20 text-center">
       <h1 className="text-2xl font-black">{d.notFoundTitle}</h1>
       <p className="mt-3 text-zinc-600">{d.notFoundBody}</p>
       <Link
