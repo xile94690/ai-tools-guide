@@ -1,21 +1,22 @@
 @import "tailwindcss";
 
-@utility shell {
+.shell {
+  box-sizing: border-box;
   margin-inline: auto;
   width: 100%;
   max-width: 90rem;
-  padding-inline: 1rem;
+  padding-inline: 1.5rem;
 }
 
 @media (min-width: 640px) {
   .shell {
-    padding-inline: 1.5rem;
+    padding-inline: 1.75rem;
   }
 }
 
 @media (min-width: 1024px) {
   .shell {
-    padding-inline: 2rem;
+    padding-inline: 2.25rem;
   }
 }
 
