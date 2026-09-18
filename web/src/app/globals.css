@@ -3,9 +3,8 @@
 .shell {
   box-sizing: border-box;
   width: 100%;
-  margin-inline: auto;
-  /* 小屏至少 24px，大屏约 4.5% 视口，上限 64px */
-  padding-inline: clamp(1.5rem, 4.5vw, 4rem);
+  /* 随视口变宽：手机至少 32px，大屏约 10% 预留侧栏广告位 */
+  padding-inline: max(2rem, 10vw);
 }
 
 html {
