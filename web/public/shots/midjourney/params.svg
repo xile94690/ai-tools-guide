@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" width="1200" height="760" font-family="-apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif">
+  <rect width="1200" height="760" fill="#ffffff"/>
+
+  <rect x="120" y="70" width="960" height="620" rx="16" fill="#0b0b0f"/>
+  <path d="M136 70 h928 a16 16 0 0 1 16 16 v28 h-960 v-28 a16 16 0 0 1 16 -16 z" fill="#27272a"/>
+  <rect x="120" y="70" width="960" height="620" rx="16" fill="none" stroke="#3f3f46" stroke-width="1"/>
+  <circle cx="156" cy="92" r="7" fill="#ff5f57"/>
+  <circle cx="178" cy="92" r="7" fill="#febc2e"/>
+  <circle cx="200" cy="92" r="7" fill="#28c840"/>
+  <rect x="390" y="78" width="420" height="28" rx="14" fill="#27272a"/>
+  <text x="600" y="97" text-anchor="middle" fill="#a1a1aa" font-size="14">midjourney.com/imagine</text>
+
+  <text x="160" y="166" fill="#e4e4e7" font-size="18" font-weight="600">Model &amp; Settings</text>
+  <text x="160" y="190" fill="#a1a1aa" font-size="13">Imagine 栏右侧的齿轮图标打开这里</text>
+
+  <rect x="160" y="212" width="430" height="418" rx="12" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+
+  <text x="186" y="262" fill="#e4e4e7" font-size="15">Aspect Ratio</text>
+  <rect x="450" y="244" width="110" height="30" rx="8" fill="#27272a"/>
+  <text x="505" y="264" text-anchor="middle" fill="#e4e4e7" font-size="14">3:2</text>
+
+  <text x="186" y="320" fill="#e4e4e7" font-size="15">Model</text>
+  <rect x="410" y="302" width="66" height="30" rx="8" fill="#164e63"/>
+  <text x="443" y="322" text-anchor="middle" fill="#67e8f9" font-size="14">V7</text>
+  <rect x="486" y="302" width="74" height="30" rx="8" fill="#27272a"/>
+  <text x="523" y="322" text-anchor="middle" fill="#e4e4e7" font-size="14">HD</text>
+
+  <text x="186" y="378" fill="#e4e4e7" font-size="15">Raw</text>
+  <rect x="470" y="362" width="52" height="26" rx="13" fill="#22d3ee"/>
+  <circle cx="508" cy="375" r="10" fill="#0b0b0f"/>
+
+  <text x="186" y="436" fill="#e4e4e7" font-size="15">Stylize</text>
+  <rect x="450" y="426" width="110" height="6" rx="3" fill="#3f3f46"/>
+  <rect x="450" y="426" width="74" height="6" rx="3" fill="#22d3ee"/>
+  <circle cx="524" cy="429" r="9" fill="#22d3ee"/>
+
+  <text x="186" y="494" fill="#e4e4e7" font-size="15">Weirdness</text>
+  <rect x="450" y="484" width="110" height="6" rx="3" fill="#3f3f46"/>
+  <rect x="450" y="484" width="22" height="6" rx="3" fill="#22d3ee"/>
+  <circle cx="472" cy="487" r="9" fill="#22d3ee"/>
+
+  <text x="186" y="552" fill="#e4e4e7" font-size="15">Variety</text>
+  <rect x="450" y="542" width="110" height="6" rx="3" fill="#3f3f46"/>
+  <rect x="450" y="542" width="30" height="6" rx="3" fill="#22d3ee"/>
+  <circle cx="480" cy="545" r="9" fill="#22d3ee"/>
+
+  <text x="186" y="610" fill="#e4e4e7" font-size="15">GPU Speed</text>
+  <rect x="418" y="592" width="66" height="30" rx="8" fill="#164e63"/>
+  <text x="451" y="612" text-anchor="middle" fill="#67e8f9" font-size="14">Fast</text>
+  <rect x="494" y="592" width="66" height="30" rx="8" fill="#27272a"/>
+  <text x="527" y="612" text-anchor="middle" fill="#e4e4e7" font-size="14">Relax</text>
+
+  <rect x="610" y="212" width="450" height="418" rx="12" fill="#0f0f13" stroke="#3f3f46" stroke-width="1"/>
+  <text x="636" y="252" fill="#a1a1aa" font-size="14">常用参数（写在提示词末尾）</text>
+
+  <text x="636" y="296" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="15" fill="#e4e4e7"><tspan fill="#22d3ee">--ar</tspan> 3:2</text>
+  <text x="636" y="330" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="15" fill="#e4e4e7"><tspan fill="#22d3ee">--stylize</tspan> 200</text>
+  <text x="636" y="364" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="15" fill="#e4e4e7"><tspan fill="#22d3ee">--style</tspan> raw</text>
+  <text x="636" y="398" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="15" fill="#e4e4e7"><tspan fill="#22d3ee">--chaos</tspan> 10</text>
+  <text x="636" y="432" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="15" fill="#e4e4e7"><tspan fill="#22d3ee">--no</tspan> text, watermark</text>
+  <text x="636" y="466" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="15" fill="#e4e4e7"><tspan fill="#22d3ee">--seed</tspan> 12345</text>
+  <text x="636" y="500" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="15" fill="#e4e4e7"><tspan fill="#22d3ee">--sref</tspan> &lt;image-url&gt;</text>
+  <text x="636" y="534" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="15" fill="#e4e4e7"><tspan fill="#22d3ee">--oref</tspan> &lt;image-url&gt;</text>
+  <text x="636" y="568" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="15" fill="#e4e4e7"><tspan fill="#22d3ee">--v</tspan> 7</text>
+  <text x="636" y="602" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="15" fill="#e4e4e7"><tspan fill="#22d3ee">--q</tspan> 2</text>
+
+  <text x="1180" y="740" text-anchor="end" fill="#a1a1aa" font-size="13">示意图</text>
+</svg>

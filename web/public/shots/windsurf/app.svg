@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" width="1200" height="760" font-family="-apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif">
+  <rect width="1200" height="760" fill="#f4f4f5"/>
+  <rect x="40" y="40" width="1120" height="680" rx="16" fill="#ffffff"/>
+  <path d="M56 40 h1088 a16 16 0 0 1 16 16 v28 h-1120 v-28 a16 16 0 0 1 16 -16 z" fill="#f4f4f5"/>
+  <rect x="40" y="40" width="1120" height="680" rx="16" fill="none" stroke="#e4e4e7"/>
+  <line x1="40" y1="84" x2="1160" y2="84" stroke="#e4e4e7"/>
+  <circle cx="76" cy="62" r="7" fill="#ff5f57"/>
+  <circle cx="98" cy="62" r="7" fill="#febc2e"/>
+  <circle cx="120" cy="62" r="7" fill="#28c840"/>
+  <text x="600" y="67" text-anchor="middle" fill="#71717a" font-size="14">Windsurf</text>
+  <path d="M40 84 h260 v636 h-244 a16 16 0 0 1 -16 -16 z" fill="#fafafa"/>
+  <line x1="300" y1="84" x2="300" y2="720" stroke="#e4e4e7"/>
+  <text x="76" y="140" fill="#18181b" font-size="15">文件</text>
+  <text x="76" y="176" fill="#3f3f46" font-size="15">Cascade</text>
+  <text x="76" y="212" fill="#3f3f46" font-size="15">搜索</text>
+  <text x="360" y="150" fill="#18181b" font-size="20" font-weight="700">Cascade 在右侧面板</text>
+  <rect x="360" y="200" width="500" height="280" rx="12" fill="#fafafa" stroke="#e4e4e7"/>
+  <rect x="900" y="200" width="200" height="280" rx="12" fill="#fafafa" stroke="#e4e4e7"/>
+  <text x="920" y="236" fill="#18181b" font-size="14">AI</text>
+  <rect x="360" y="560" width="740" height="96" rx="20" fill="#ffffff" stroke="#e4e4e7"/>
+  <text x="384" y="616" fill="#a1a1aa" font-size="15">描述多步任务…</text>
+  <text x="1180" y="740" text-anchor="end" fill="#a1a1aa" font-size="13">示意图</text>
+</svg>

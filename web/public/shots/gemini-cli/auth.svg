@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" width="1200" height="760" font-family="-apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif">
+  <rect width="1200" height="760" fill="#ffffff"/>
+
+  <rect x="120" y="70" width="960" height="620" rx="16" fill="#0b0b0f"/>
+  <path d="M136 70 h928 a16 16 0 0 1 16 16 v28 h-960 v-28 a16 16 0 0 1 16 -16 z" fill="#27272a"/>
+  <rect x="120" y="70" width="960" height="620" rx="16" fill="none" stroke="#3f3f46" stroke-width="1"/>
+  <circle cx="156" cy="92" r="7" fill="#ff5f57"/>
+  <circle cx="178" cy="92" r="7" fill="#febc2e"/>
+  <circle cx="200" cy="92" r="7" fill="#28c840"/>
+  <text x="600" y="97" text-anchor="middle" fill="#a1a1aa" font-size="15">gemini</text>
+
+  <text x="160" y="192" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="16" fill="#d4d4d8">How would you like to authenticate?</text>
+
+  <rect x="148" y="224" width="904" height="76" rx="10" fill="#164e63"/>
+  <text x="176" y="258" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="16" fill="#ffffff">1. Sign in with Google</text>
+  <text x="420" y="258" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="14" fill="#67e8f9">free tier</text>
+  <text x="176" y="282" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="13" fill="#a1a1aa">60 requests/min and 1,000 requests/day with a personal account</text>
+
+  <rect x="148" y="314" width="904" height="76" rx="10" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+  <text x="176" y="348" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="16" fill="#e4e4e7">2. Gemini API Key</text>
+  <text x="392" y="348" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="14" fill="#a1a1aa">usage-based</text>
+  <text x="176" y="372" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="13" fill="#a1a1aa">export GEMINI_API_KEY="..."   (key from aistudio.google.com/apikey)</text>
+
+  <rect x="148" y="404" width="904" height="76" rx="10" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+  <text x="176" y="438" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="16" fill="#e4e4e7">3. Vertex AI</text>
+  <text x="316" y="438" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="14" fill="#a1a1aa">enterprise</text>
+  <text x="176" y="462" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="13" fill="#a1a1aa">export GOOGLE_GENAI_USE_VERTEXAI=true</text>
+
+  <line x1="160" y1="556" x2="1040" y2="556" stroke="#3f3f46" stroke-width="1"/>
+
+  <text x="160" y="606" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="14" fill="#a1a1aa">↑↓ select   enter confirm</text>
+  <text x="160" y="650" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="15" fill="#22d3ee">Opening browser for Google sign-in…</text>
+
+  <text x="1180" y="740" text-anchor="end" fill="#a1a1aa" font-size="13">示意图</text>
+</svg>

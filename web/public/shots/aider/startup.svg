@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" width="1200" height="760" font-family="-apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif">
+  <rect width="1200" height="760" fill="#ffffff"/>
+
+  <rect x="120" y="70" width="960" height="620" rx="16" fill="#0b0b0f"/>
+  <path d="M136 70 h928 a16 16 0 0 1 16 16 v28 h-960 v-28 a16 16 0 0 1 16 -16 z" fill="#27272a"/>
+  <rect x="120" y="70" width="960" height="620" rx="16" fill="none" stroke="#3f3f46" stroke-width="1"/>
+  <circle cx="156" cy="92" r="7" fill="#ff5f57"/>
+  <circle cx="178" cy="92" r="7" fill="#febc2e"/>
+  <circle cx="200" cy="92" r="7" fill="#28c840"/>
+  <text x="600" y="97" text-anchor="middle" fill="#a1a1aa" font-size="15">aider</text>
+
+  <text x="160" y="192" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="16" fill="#d4d4d8">Aider v0.86.0</text>
+  <text x="160" y="224" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="14" fill="#a1a1aa">Model: deepseek/deepseek-chat with diff edit format</text>
+  <text x="160" y="252" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="14" fill="#a1a1aa">Git: 2.39.3 (repo: my-project)</text>
+  <text x="160" y="280" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="14" fill="#a1a1aa">Repo-map: using 1024 tokens</text>
+
+  <line x1="160" y1="312" x2="1040" y2="312" stroke="#3f3f46" stroke-width="1"/>
+
+  <text x="160" y="356" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="14" fill="#a1a1aa">$ git init &amp;&amp; aider --model deepseek --api-key deepseek=sk-…</text>
+
+  <text x="160" y="404" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="14" fill="#22d3ee">aider&gt; add a /health endpoint that returns {"ok": true}</text>
+
+  <text x="160" y="452" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="14" fill="#d4d4d8">Applied edit to src/server.ts</text>
+  <text x="160" y="480" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="14" fill="#d4d4d8">Commit 7f3a1c2 aider: add /health endpoint</text>
+
+  <text x="160" y="528" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="14" fill="#a1a1aa">Tokens: 4.1k sent, 512 received. Cost: $0.0021</text>
+
+  <line x1="160" y1="556" x2="1040" y2="556" stroke="#3f3f46" stroke-width="1"/>
+
+  <text x="160" y="606" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="14" fill="#a1a1aa">/add src/server.ts   add a file to the chat</text>
+  <text x="160" y="634" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="14" fill="#a1a1aa">/drop src/server.ts  remove it again to save tokens</text>
+  <text x="160" y="662" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="14" fill="#a1a1aa">/undo               revert the last aider commit</text>
+
+  <text x="1180" y="740" text-anchor="end" fill="#a1a1aa" font-size="13">示意图</text>
+</svg>

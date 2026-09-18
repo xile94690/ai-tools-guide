@@ -1,0 +1,7 @@
+.DS_Store
+.commandcode/
+web/node_modules/
+web/.next/
+web/out/
+web/coverage/
+web/*.tsbuildinfo
