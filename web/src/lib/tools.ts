@@ -2074,15 +2074,18 @@ export const CC_SWITCH_SLUG = "cc-switch";
 export const ccSwitchTools = () => tools.filter((t) => t.ccSwitch);
 
 export function relatedTools(tool: Tool, limit = 4): Tool[] {
-  const named = (tool.related ?? [])
-    .map((slug) => getTool(slug))
-    .filter((t): t is Tool => Boolean(t) && t.slug !== tool.slug);
+  const named: Tool[] = [];
+  for (const slug of tool.related ?? []) {
+    const hit = getTool(slug);
+    if (hit && hit.slug !== tool.slug) named.push(hit);
+  }
   if (named.length >= limit) return named.slice(0, limit);
+  const used = new Set(named.map((n) => n.slug));
   const extra = tools.filter(
-    (t) =>
-      t.slug !== tool.slug &&
-      t.category === tool.category &&
-      !named.some((n) => n.slug === t.slug),
+    (item) =>
+      item.slug !== tool.slug &&
+      item.category === tool.category &&
+      !used.has(item.slug),
   );
   return [...named, ...extra].slice(0, limit);
 }
