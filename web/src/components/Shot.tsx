@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { publicUrl } from "@/lib/paths";
 
 export default function Shot({
   src,
@@ -28,7 +29,7 @@ export default function Shot({
   return (
     <figure className="my-4">
       <Image
-        src={src}
+        src={publicUrl(src)}
         alt={caption}
         width={0}
         height={0}

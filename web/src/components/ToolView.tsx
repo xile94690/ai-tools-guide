@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { catalogVerified } from "@/lib/site";
 import { t } from "@/lib/i18n";
+import { publicUrl } from "@/lib/paths";
 import { toolIcon, type Tool } from "@/lib/tools";
 import type { Tutorial as TutorialData } from "@/lib/tutorials";
 import BackLink from "@/components/BackLink";
@@ -58,7 +59,7 @@ export default function ToolView({
             <div className="flex items-center gap-4">
               <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-zinc-200 bg-white shadow-sm">
                 <Image
-                  src={toolIcon(tool.slug)}
+                  src={publicUrl(toolIcon(tool.slug))}
                   alt={tool.name}
                   width={64}
                   height={64}

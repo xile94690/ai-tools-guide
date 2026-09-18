@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { parseLocale } from "./locale";
-import { localizedPath, stripLocalePrefix, switchLocalePath } from "./paths";
+import { localizedPath, publicUrl, stripLocalePrefix, switchLocalePath } from "./paths";
 
 describe("localizedPath", () => {
   it("never prefixes language on public URLs", () => {
@@ -33,6 +33,13 @@ describe("switchLocalePath", () => {
     expect(switchLocalePath("/en/search", "?q=kimi", "zh")).toBe(
       "/search?q=kimi",
     );
+  });
+});
+
+describe("publicUrl", () => {
+  it("leaves root-relative public files unchanged without a basePath", () => {
+    expect(publicUrl("/icons/chatgpt.png")).toBe("/icons/chatgpt.png");
+    expect(publicUrl("https://example.com/a.png")).toBe("https://example.com/a.png");
   });
 });
 

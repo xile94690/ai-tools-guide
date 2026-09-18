@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Locale } from "@/lib/site";
 import { t } from "@/lib/i18n";
-import { localizedPath } from "@/lib/paths";
+import { localizedPath, publicUrl } from "@/lib/paths";
 import { toolIcon, type Tool } from "@/lib/tools";
 import ArrowRight from "@/components/ArrowRight";
 
@@ -17,7 +17,7 @@ export function ToolCard({ tool, locale }: { tool: Tool; locale: Locale }) {
       <div className="flex items-center gap-3">
         <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-zinc-200 bg-white">
           <Image
-            src={toolIcon(tool.slug)}
+            src={publicUrl(toolIcon(tool.slug))}
             alt={tool.name}
             width={44}
             height={44}

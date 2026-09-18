@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import type { Locale } from "@/lib/site";
 import { categoryById } from "@/lib/site";
 import { t } from "@/lib/i18n";
-import { localizedPath } from "@/lib/paths";
+import { localizedPath, publicUrl } from "@/lib/paths";
 import { searchTools } from "@/lib/search";
 import { toolIcon, type Tool } from "@/lib/tools";
 
@@ -124,7 +124,7 @@ export default function SearchBox({
                       >
                         <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-zinc-200 bg-white">
                           <Image
-                            src={toolIcon(tool.slug)}
+                            src={publicUrl(toolIcon(tool.slug))}
                             alt=""
                             width={28}
                             height={28}

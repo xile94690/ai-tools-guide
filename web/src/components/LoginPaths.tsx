@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Locale } from "@/lib/site";
 import { t } from "@/lib/i18n";
-import { localizedPath } from "@/lib/paths";
+import { localizedPath, publicUrl } from "@/lib/paths";
 import {
   CC_SWITCH_SLUG,
   ccSwitchTools,
@@ -40,7 +40,7 @@ export default function LoginPaths({
                 className="flex items-center gap-3 rounded-xl border border-zinc-200 px-3 py-3 transition-colors hover:border-zinc-400 hover:bg-zinc-50"
               >
                 <Image
-                  src={toolIcon(app.slug)}
+                  src={publicUrl(toolIcon(app.slug))}
                   alt=""
                   width={32}
                   height={32}
