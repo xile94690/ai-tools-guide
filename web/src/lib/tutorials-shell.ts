@@ -1,4 +1,5 @@
 import type { EnvCheck, Plan, Surface } from "./tutorial-types";
+import { networkCurlCommand } from "./network";
 
 export interface TutorialShell {
   surfaces: Surface[];
@@ -24,8 +25,10 @@ function webEnv(
       },
       {
         label: "网络",
-        check: `在浏览器打开 ${url}`,
-        pass: "能进入官网，而不是一直转圈或 Access denied。",
+        check: "打开终端，把下面命令贴进去回车（Windows 可写成 curl.exe）。",
+        command: networkCurlCommand(url),
+        output: "HTTP/2 200",
+        pass: "几秒内出现 HTTP 状态码（200、301、302、403 都行，说明能连上）。超时或 Could not resolve 说明现在上不了。",
       },
       {
         label: "账号",
@@ -42,8 +45,10 @@ function webEnv(
       },
       {
         label: "Network",
-        check: `Open ${url}`,
-        pass: "The site loads instead of spinning or returning Access denied.",
+        check: "Open a terminal, paste this, and press Enter (on Windows you can type curl.exe).",
+        command: networkCurlCommand(url),
+        output: "HTTP/2 200",
+        pass: "An HTTP status (200, 301, 302, or even 403) appears within a few seconds. Timeout or Could not resolve means you cannot reach it yet.",
       },
       {
         label: "Account",

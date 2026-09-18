@@ -1,32 +1,19 @@
+"use client";
+
 import { Suspense } from "react";
-import type { Metadata } from "next";
-import { isLocale, type Locale } from "@/lib/site";
+import { useSearchParams } from "next/navigation";
 import { t } from "@/lib/i18n";
 import { searchTools } from "@/lib/search";
 import { featuredTools } from "@/lib/tools";
 import { ToolCard } from "@/components/ToolCard";
 import BackLink from "@/components/BackLink";
 import SearchBox from "@/components/SearchBox";
+import { useLocale } from "@/components/LocaleProvider";
 
-export async function generateMetadata({
-  searchParams,
-}: {
-  searchParams: Promise<{ q?: string }>;
-}): Promise<Metadata> {
-  const { q = "" } = await searchParams;
-  return { title: q ? q : undefined };
-}
-
-export default async function SearchPage({
-  params,
-  searchParams,
-}: {
-  params: Promise<{ locale: string }>;
-  searchParams: Promise<{ q?: string }>;
-}) {
-  const { locale: raw } = await params;
-  const { q = "" } = await searchParams;
-  const locale: Locale = isLocale(raw) ? raw : "zh";
+function SearchResults() {
+  const { locale } = useLocale();
+  const searchParams = useSearchParams();
+  const q = searchParams.get("q") ?? "";
   const d = t(locale);
   const kw = q.trim();
   const list = kw ? searchTools(kw, locale) : [];
@@ -38,11 +25,7 @@ export default async function SearchPage({
         {kw ? `${d.search}：${kw}` : d.search}
       </h1>
       <div className="mt-4 max-w-xl">
-        <Suspense
-          fallback={<div className="h-12 rounded-full border border-zinc-200" />}
-        >
-          <SearchBox locale={locale} tone="page" />
-        </Suspense>
+        <SearchBox locale={locale} tone="page" />
       </div>
       {kw ? (
         <p className="mt-1 text-sm text-zinc-500">{d.toolsCount(list.length)}</p>
@@ -69,5 +52,15 @@ export default async function SearchPage({
         </div>
       )}
     </main>
+  );
+}
+
+export default function SearchView() {
+  return (
+    <Suspense
+      fallback={<main className="shell flex-1 py-10" />}
+    >
+      <SearchResults />
+    </Suspense>
   );
 }

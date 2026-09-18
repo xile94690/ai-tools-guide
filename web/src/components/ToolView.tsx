@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
+"use client";
+
 import Image from "next/image";
-import { notFound } from "next/navigation";
-import { catalogVerified, isLocale, type Locale } from "@/lib/site";
+import { catalogVerified } from "@/lib/site";
 import { t } from "@/lib/i18n";
-import { tools, getTool, toolIcon, type Tool } from "@/lib/tools";
-import { getTutorial } from "@/lib/tutorials";
+import { toolIcon, type Tool } from "@/lib/tools";
+import type { Tutorial as TutorialData } from "@/lib/tutorials";
 import BackLink from "@/components/BackLink";
 import ArrowRight from "@/components/ArrowRight";
 import Tutorial from "@/components/Tutorial";
@@ -18,6 +18,7 @@ import {
   IconSparkle,
   SectionTitle,
 } from "@/components/Icons";
+import { useLocale } from "@/components/LocaleProvider";
 
 const regionStyles: Record<Tool["region"], string> = {
   domestic: "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100",
@@ -25,43 +26,24 @@ const regionStyles: Record<Tool["region"], string> = {
   both: "bg-sky-50 text-sky-700 ring-1 ring-sky-100",
 };
 
-export function generateStaticParams() {
-  return ["zh", "en"].flatMap((locale) =>
-    tools.map((tool) => ({ locale, slug: tool.slug })),
-  );
-}
-
-export async function generateMetadata({
-  params,
+export default function ToolView({
+  tool,
+  tutorialZh,
+  tutorialEn,
 }: {
-  params: Promise<{ locale: string; slug: string }>;
-}): Promise<Metadata> {
-  const { locale: raw, slug } = await params;
-  const locale: Locale = isLocale(raw) ? raw : "zh";
-  const tool = getTool(slug);
-  if (!tool) return {};
-  const tagline = locale === "zh" ? tool.taglineZh : tool.taglineEn;
-  return { title: tool.name, description: tagline };
-}
-
-export default async function ToolPage({
-  params,
-}: {
-  params: Promise<{ locale: string; slug: string }>;
+  tool: Tool;
+  tutorialZh?: TutorialData;
+  tutorialEn?: TutorialData;
 }) {
-  const { locale: raw, slug } = await params;
-  const locale: Locale = isLocale(raw) ? raw : "zh";
+  const { locale } = useLocale();
   const d = t(locale);
-  const tool = getTool(slug);
-  if (!tool) notFound();
-
   const desc = locale === "zh" ? tool.descZh : tool.descEn;
   const install = locale === "zh" ? tool.installZh : tool.installEn;
   const usage = locale === "zh" ? tool.usageZh : tool.usageEn;
   const faq = locale === "zh" ? tool.faqZh : tool.faqEn;
   const pricing = locale === "zh" ? tool.pricingZh : tool.pricingEn;
   const tagline = locale === "zh" ? tool.taglineZh : tool.taglineEn;
-  const tutorial = getTutorial(tool.slug, locale);
+  const tutorial = locale === "zh" ? tutorialZh : tutorialEn;
 
   return (
     <div className="flex flex-1 flex-col">
@@ -143,7 +125,11 @@ export default async function ToolPage({
           tool={tool}
           locale={locale}
           installAnchor={
-            tutorial?.cli?.length ? "cli" : tutorial?.desktop?.length ? "desktop" : "cli"
+            tutorial?.cli?.length
+              ? "cli"
+              : tutorial?.desktop?.length
+                ? "desktop"
+                : "cli"
           }
         />
 
@@ -151,8 +137,6 @@ export default async function ToolPage({
           <Tutorial
             data={tutorial}
             locale={locale}
-            toolName={tool.name}
-            toolRegion={tool.region}
             website={tool.website}
           />
         ) : (

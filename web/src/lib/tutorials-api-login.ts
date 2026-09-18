@@ -107,7 +107,7 @@ export function apiLoginSteps(opts: {
               `**Where the key comes from**: ${officialKeyEn}. Treat gateway keys like passwords.`,
               ...(ccSwitch
                 ? [
-                    "**With CC Switch**: see the [CC Switch guide](/en/tool/cc-switch). Add a provider, set it current, then fully quit and reopen " +
+                    "**With CC Switch**: see the [CC Switch guide](/tool/cc-switch). Add a provider, set it current, then fully quit and reopen " +
                       appEn,
                   ]
                 : []),

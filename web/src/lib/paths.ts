@@ -1,17 +1,18 @@
-import { defaultLocale, type Locale } from "./site";
+import type { Locale } from "./site";
 
-/** Public URL for a path. Chinese (default) has no prefix; English is `/en/...`. */
-export function localizedPath(locale: Locale, path: string): string {
+function normalize(path: string): string {
   const normalized = path.startsWith("/") ? path : `/${path}`;
-  const clean = normalized.replace(/\/{2,}/g, "/") || "/";
-  if (locale === defaultLocale) return clean;
-  if (clean === "/") return `/${locale}`;
-  return `/${locale}${clean}`;
+  return normalized.replace(/\/{2,}/g, "/") || "/";
 }
 
 export function stripLocalePrefix(pathname: string): string {
-  const stripped = pathname.replace(/^\/(zh|en)(?=\/|$)/, "");
+  const stripped = normalize(pathname).replace(/^\/(zh|en)(?=\/|$)/, "");
   return stripped === "" ? "/" : stripped;
+}
+
+/** Public URL. Language is a cookie, so the path is the same for zh and en. */
+export function localizedPath(_locale: Locale, path: string): string {
+  return stripLocalePrefix(path);
 }
 
 export function withQuery(path: string, search: string): string {
@@ -22,7 +23,7 @@ export function withQuery(path: string, search: string): string {
 export function switchLocalePath(
   pathname: string,
   search: string,
-  nextLocale: Locale,
+  _nextLocale?: Locale,
 ): string {
-  return withQuery(localizedPath(nextLocale, stripLocalePrefix(pathname)), search);
+  return withQuery(stripLocalePrefix(pathname), search);
 }

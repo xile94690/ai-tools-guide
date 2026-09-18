@@ -1,19 +1,17 @@
+"use client";
+
 import { Suspense } from "react";
 import Link from "next/link";
-import { categories, type Locale, isLocale } from "@/lib/site";
+import { categories } from "@/lib/site";
 import { t } from "@/lib/i18n";
 import { localizedPath } from "@/lib/paths";
 import { tools, featuredTools } from "@/lib/tools";
 import { ToolCard } from "@/components/ToolCard";
 import SearchBox from "@/components/SearchBox";
+import { useLocale } from "@/components/LocaleProvider";
 
-export default async function LocaleHome({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale: raw } = await params;
-  const locale: Locale = isLocale(raw) ? raw : "zh";
+export default function HomePage() {
+  const { locale } = useLocale();
   const d = t(locale);
 
   return (

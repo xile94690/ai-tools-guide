@@ -7,12 +7,10 @@ import type {
   Step,
   Tutorial as TutorialData,
 } from "@/lib/tutorials";
-import type { Region } from "@/lib/tools";
-import { isNetworkEnvLabel } from "@/lib/network";
+import { isNetworkEnvLabel, networkCurlCommand } from "@/lib/network";
 import CodeBlock from "@/components/CodeBlock";
 import Shot from "@/components/Shot";
 import RichText from "@/components/RichText";
-import NetworkProbe from "@/components/NetworkProbe";
 import {
   IconAlert,
   IconCheck,
@@ -86,35 +84,58 @@ function Plans({ plans, locale }: { plans: Plan[]; locale: Locale }) {
   );
 }
 
+function withTerminalNetworkCheck(
+  item: EnvCheck,
+  website: string,
+  locale: Locale,
+): EnvCheck {
+  if (!isNetworkEnvLabel(item.label) || item.command) return item;
+  const zh = locale === "zh";
+  return {
+    ...item,
+    check: zh
+      ? "打开终端，把下面命令贴进去回车（Windows 可写成 curl.exe）。"
+      : "Open a terminal, paste this, and press Enter (on Windows you can type curl.exe).",
+    command: networkCurlCommand(website),
+    output: "HTTP/2 200",
+    pass: zh
+      ? "几秒内出现 HTTP 状态码（200、301、302、403 都行，说明能连上）。超时或 Could not resolve 说明现在上不了。"
+      : "An HTTP status (200, 301, 302, or even 403) appears within a few seconds. Timeout or Could not resolve means you cannot reach it yet.",
+  };
+}
+
 function EnvChecks({
   items,
   locale,
-  toolName,
-  toolRegion,
   website,
 }: {
   items: EnvCheck[];
   locale: Locale;
-  toolName: string;
-  toolRegion: Region;
   website: string;
 }) {
   const d = t(locale);
-  const rest = items.filter((item) => !isNetworkEnvLabel(item.label));
+  const rows = items.map((item) =>
+    withTerminalNetworkCheck(item, website, locale),
+  );
+  if (!rows.some((item) => isNetworkEnvLabel(item.label))) {
+    rows.unshift(
+      withTerminalNetworkCheck(
+        {
+          label: locale === "zh" ? "网络" : "Network",
+          check: "",
+          pass: "",
+        },
+        website,
+        locale,
+      ),
+    );
+  }
   return (
     <section id="env" className="mt-10 scroll-mt-24">
       <SectionTitle icon={IconScan}>{d.envCheck}</SectionTitle>
-      <div className="mt-4">
-        <NetworkProbe
-          locale={locale}
-          toolName={toolName}
-          toolRegion={toolRegion}
-          website={website}
-        />
-      </div>
-      {rest.length > 0 && (
+      {rows.length > 0 && (
       <ol className="mt-4 divide-y divide-zinc-200 overflow-hidden rounded-2xl border border-zinc-200 bg-white">
-        {rest.map((item, i) => (
+        {rows.map((item, i) => (
           <li key={item.label} className="px-5 py-4">
             <div className="flex gap-4">
               <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-zinc-900 text-xs font-bold text-white">
@@ -230,14 +251,10 @@ function BlockView({ block, locale }: { block: Block; locale: Locale }) {
 export default function Tutorial({
   data,
   locale,
-  toolName,
-  toolRegion,
   website,
 }: {
   data: TutorialData;
   locale: Locale;
-  toolName: string;
-  toolRegion: Region;
   website: string;
 }) {
   const d = t(locale);
@@ -274,8 +291,6 @@ export default function Tutorial({
         <EnvChecks
           items={envCheck}
           locale={locale}
-          toolName={toolName}
-          toolRegion={toolRegion}
           website={website}
         />
 

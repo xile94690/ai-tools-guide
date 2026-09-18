@@ -4,13 +4,11 @@ import type { Locale } from "@/lib/site";
 import { t } from "@/lib/i18n";
 import { localizedPath } from "@/lib/paths";
 import { toolIcon, type Tool } from "@/lib/tools";
-import { getTutorial } from "@/lib/tutorials";
 import ArrowRight from "@/components/ArrowRight";
 
 export function ToolCard({ tool, locale }: { tool: Tool; locale: Locale }) {
   const d = t(locale);
   const tagline = locale === "zh" ? tool.taglineZh : tool.taglineEn;
-  const hasTutorial = Boolean(getTutorial(tool.slug, locale));
   return (
     <Link
       href={localizedPath(locale, `/tool/${tool.slug}`)}
@@ -63,11 +61,9 @@ export function ToolCard({ tool, locale }: { tool: Tool; locale: Locale }) {
         {d.viewTutorial}
         <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
       </span>
-      {hasTutorial && (
-        <span className="mt-2 text-xs font-medium text-emerald-600">
-          ✓ {d.detailed}
-        </span>
-      )}
+      <span className="mt-2 text-xs font-medium text-emerald-600">
+        ✓ {d.detailed}
+      </span>
     </Link>
   );
 }

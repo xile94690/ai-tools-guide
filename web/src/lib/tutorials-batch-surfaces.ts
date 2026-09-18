@@ -137,7 +137,7 @@ export const extraSurfaces: Record<
               kind: "list",
               items: [
                 "Cursor → Settings → Models / API Keys",
-                "For **Claude Code / Codex CLI**, use [CC Switch](/en/tool/cc-switch) — it does not drive the Cursor window",
+                "For **Claude Code / Codex CLI**, use [CC Switch](/tool/cc-switch) — it does not drive the Cursor window",
                 "Start a new agent chat after changing keys",
               ],
             },
