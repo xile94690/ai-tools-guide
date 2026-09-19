@@ -93,6 +93,7 @@ const zh = {
   companionCliCta: "打开 CLI 教程",
   notFoundTitle: "页面不存在",
   notFoundBody: "这个地址没有对应的页面，回首页看看其他工具吧。",
+  adSponsor: "推广",
 };
 
 const en: { [K in keyof typeof zh]: (typeof zh)[K] } = {
@@ -189,6 +190,7 @@ const en: { [K in keyof typeof zh]: (typeof zh)[K] } = {
   companionCliCta: "Open the CLI guide",
   notFoundTitle: "Page not found",
   notFoundBody: "This address does not exist. Head home and browse the tools.",
+  adSponsor: "Sponsored",
 };
 
 export const dict = { zh, en };
