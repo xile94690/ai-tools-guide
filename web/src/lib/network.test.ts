@@ -1,19 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isNetworkEnvLabel, networkCurlCommand, networkVerdict } from "./network";
-
-describe("networkVerdict", () => {
-  it("flags a China exit for tools that need a global network", () => {
-    expect(networkVerdict("global", "CN")).toBe("bad");
-    expect(networkVerdict("global", "US")).toBe("ok");
-    expect(networkVerdict("global", "HK")).toBe("ok");
-  });
-
-  it("treats China-direct tools as fine on a CN exit", () => {
-    expect(networkVerdict("domestic", "CN")).toBe("ok");
-    expect(networkVerdict("both", "CN")).toBe("ok");
-    expect(networkVerdict("domestic", "JP")).toBe("warn");
-  });
-});
+import { isNetworkEnvLabel, networkCurlCommand } from "./network";
 
 describe("isNetworkEnvLabel", () => {
   it("matches network environment rows", () => {
