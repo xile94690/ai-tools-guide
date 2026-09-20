@@ -8,13 +8,7 @@ export type AdGuideStep = {
   captionEn: string;
 };
 
-export type AdGuideId =
-  | "vultr"
-  | "bandwagon"
-  | "digitalocean"
-  | "racknerd"
-  | "nordvpn"
-  | "surfshark";
+export type AdGuideId = "vultr" | "bandwagon";
 
 export const adGuides: Record<AdGuideId, AdGuideStep[]> = {
   vultr: [
@@ -55,82 +49,6 @@ export const adGuides: Record<AdGuideId, AdGuideStep[]> = {
       captionEn: "Shared CPU → Cloud Compute → vc2-1c-1gb = $5/mo (console)",
     },
   ],
-  digitalocean: [
-    {
-      titleZh: "打开官网，点 Sign up",
-      titleEn: "Open the site and click Sign up",
-      textZh: "打开 digitalocean.com，右上角 **Sign up**。Droplet 就是一台云服务器。",
-      textEn: "Open digitalocean.com and click **Sign up**. A Droplet is a cloud VPS.",
-      src: "/shots/ads/do-1.png",
-      captionZh: "官网右上角 Sign up（官网实拍）",
-      captionEn: "Sign up is top-right (official site)",
-    },
-    {
-      titleZh: "邮箱或 Google 注册",
-      titleEn: "Sign up with email or Google",
-      textZh: "用邮箱或 **Continue with Google**。去邮箱点验证。新用户常有试用额度，以官网为准。",
-      textEn: "Use email or **Continue with Google**, then verify. New accounts often include trial credit.",
-      src: "/shots/ads/do-2.png",
-      captionZh: "邮箱或 Google 注册（官网实拍）",
-      captionEn: "Email or Google sign-up (official site)",
-    },
-    {
-      titleZh: "Create Droplet：选新加坡",
-      titleEn: "Create a Droplet in Singapore",
-      textZh: "控制台点 **Create → Droplets**。Region 选 **Singapore**。Plan 选 **Basic** 入门档。最后点 **Create Droplet**。",
-      textEn: "Create → Droplets. Region **Singapore**, plan **Basic**, then **Create Droplet**.",
-      src: "/shots/ads/do-3.png",
-      captionZh: "Singapore + Basic，再 Create Droplet（官网实拍）",
-      captionEn: "Singapore + Basic, then Create Droplet (official site)",
-    },
-    {
-      titleZh: "复制 Droplet IP",
-      titleEn: "Copy the Droplet IP",
-      textZh: "列表里出现 **Active** 后点进去，复制 IP。root 密码发到邮箱。终端执行 `ssh root@IP`。",
-      textEn: "When it is **Active**, open it and copy the IP. Root password arrives by email. `ssh root@IP`.",
-      src: "/shots/ads/do-4.png",
-      captionZh: "Active 后复制 IP（官网实拍）",
-      captionEn: "Copy the IP when Active (official site)",
-    },
-  ],
-  racknerd: [
-    {
-      titleZh: "打开年付特价页，选套餐",
-      titleEn: "Open the yearly specials and pick a plan",
-      textZh: "打开 racknerd.com 的 KVM VPS 特价页。入门常见是大约 **$11/年** 那档（价格以当时页面为准）。点 **Order**。",
-      textEn: "Open RackNerd KVM VPS specials. Starter yearly plans are often around **$11/year** (confirm on the page). Click **Order**.",
-      src: "/shots/ads/racknerd-1.png",
-      captionZh: "年付特价里点 Order（官网实拍）",
-      captionEn: "Click Order on a yearly special (official site)",
-    },
-    {
-      titleZh: "选系统和主机名",
-      titleEn: "Choose OS and hostname",
-      textZh: "Hostname 随便填（如 `vps1`）。操作系统选 **Ubuntu 24.04**。点 **Continue**。",
-      textEn: "Set any hostname (e.g. `vps1`). OS: **Ubuntu 24.04**. Click **Continue**.",
-      src: "/shots/ads/racknerd-2.png",
-      captionZh: "Ubuntu + 主机名后 Continue（官网实拍）",
-      captionEn: "Ubuntu + hostname, then Continue (official site)",
-    },
-    {
-      titleZh: "结账付款",
-      titleEn: "Checkout and pay",
-      textZh: "没有账号就现场注册（邮箱+密码）。付款可用 PayPal / 信用卡等，以结账页为准。点 **Complete Order**。",
-      textEn: "Register with email if needed. Pay with PayPal or card as shown. Click **Complete Order**.",
-      src: "/shots/ads/racknerd-3.png",
-      captionZh: "注册并 Complete Order（官网实拍）",
-      captionEn: "Register and Complete Order (official site)",
-    },
-    {
-      titleZh: "在客户区查看 VPS",
-      titleEn: "Find the VPS in the client area",
-      textZh: "登录 my.racknerd.com → **Services**。点进刚买的机器，复制 IP 和密码（也在开通邮件里）。",
-      textEn: "In my.racknerd.com → **Services**, open the new VPS and copy IP and password (also emailed).",
-      src: "/shots/ads/racknerd-4.png",
-      captionZh: "Services 里查看 IP（官网实拍）",
-      captionEn: "IP is under Services (official site)",
-    },
-  ],
   bandwagon: [
     {
       titleZh: "打开套餐页，选 KVM",
@@ -167,82 +85,6 @@ export const adGuides: Record<AdGuideId, AdGuideStep[]> = {
       src: "/shots/ads/bwh-4.png",
       captionZh: "KiwiVM 面板复制 IP（官网实拍）",
       captionEn: "Copy IP in KiwiVM (official site)",
-    },
-  ],
-  nordvpn: [
-    {
-      titleZh: "打开官网，点 Get NordVPN",
-      titleEn: "Open the site and click Get NordVPN",
-      textZh: "打开 nordvpn.com，点 **Get NordVPN**。只从官网下载 App。",
-      textEn: "Open nordvpn.com and click **Get NordVPN**. Download the app only from the official site.",
-      src: "/shots/ads/nord-1.png",
-      captionZh: "官网 Get NordVPN（官网实拍）",
-      captionEn: "Get NordVPN on the official site (official site)",
-    },
-    {
-      titleZh: "选订阅时长",
-      titleEn: "Choose a plan length",
-      textZh: "进入价格页。**2 年**通常最便宜（以当时页面为准）。点 Continue。",
-      textEn: "On pricing, **2-year** is often the best value (confirm on the page). Continue.",
-      src: "/shots/ads/nord-2.png",
-      captionZh: "选套餐后 Continue（官网实拍）",
-      captionEn: "Pick a plan, then Continue (official site)",
-    },
-    {
-      titleZh: "创建账号并付款",
-      titleEn: "Create an account and pay",
-      textZh: "填邮箱和密码。用境外信用卡或 PayPal 付款（国内卡经常失败）。付完账号立刻生效。",
-      textEn: "Set email and password. Pay with an international card or PayPal. The account activates immediately.",
-      src: "/shots/ads/nord-3.png",
-      captionZh: "邮箱 + 付款（官网实拍）",
-      captionEn: "Email + payment (official site)",
-    },
-    {
-      titleZh: "安装官方 App 并连接",
-      titleEn: "Install the official app and connect",
-      textZh: "打开 nordvpn.com/download，按系统安装。用刚才的邮箱登录，点 **Quick Connect**。",
-      textEn: "Download from nordvpn.com/download, sign in with the same email, then **Quick Connect**.",
-      src: "/shots/ads/nord-4.png",
-      captionZh: "装 App 后 Quick Connect（官网实拍）",
-      captionEn: "Quick Connect in the official app (official site)",
-    },
-  ],
-  surfshark: [
-    {
-      titleZh: "打开官网，点 Get Surfshark",
-      titleEn: "Open the site and click Get Surfshark",
-      textZh: "打开 surfshark.com，点 **Get Surfshark**。一个账号不限设备数。",
-      textEn: "Open surfshark.com and click **Get Surfshark**. One account covers unlimited devices.",
-      src: "/shots/ads/surf-1.png",
-      captionZh: "官网 Get Surfshark（官网实拍）",
-      captionEn: "Get Surfshark on the official site (official site)",
-    },
-    {
-      titleZh: "选订阅时长",
-      titleEn: "Choose a plan length",
-      textZh: "价格页选 **2 年**通常更划算（以官网为准）。点 Get deal / Continue。",
-      textEn: "**2-year** is often cheapest (confirm on the site). Get deal / Continue.",
-      src: "/shots/ads/surf-2.png",
-      captionZh: "选时长后继续（官网实拍）",
-      captionEn: "Pick duration, then continue (official site)",
-    },
-    {
-      titleZh: "注册并付款",
-      titleEn: "Register and pay",
-      textZh: "填邮箱密码，按页面用卡或 PayPal 付款。",
-      textEn: "Create email/password and pay by card or PayPal.",
-      src: "/shots/ads/surf-3.png",
-      captionZh: "创建账号并 Subscribe（官网实拍）",
-      captionEn: "Create account and Subscribe (official site)",
-    },
-    {
-      titleZh: "安装 App，打开连接",
-      titleEn: "Install the app and turn it on",
-      textZh: "从官网下载 Windows / macOS / 手机客户端。同一邮箱登录，把开关打到 **ON**。",
-      textEn: "Download from the official site, sign in, and switch **ON**.",
-      src: "/shots/ads/surf-4.png",
-      captionZh: "官方 App 打开 ON（官网实拍）",
-      captionEn: "Turn ON in the official app (official site)",
     },
   ],
 };

@@ -11,6 +11,18 @@ html {
   color-scheme: light;
 }
 
+/* 全站隐藏滚动条，但保留滚动能力（滚轮 / 触控 / 键盘 / 锚点跳转照常） */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* 旧版 Edge / IE */
+}
+
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none; /* Chrome / Safari / 新版 Edge */
+}
+
 body {
   font-family:
     ui-sans-serif,
@@ -56,6 +68,15 @@ body {
   }
 }
 
+.ad-rail-note {
+  margin: 0;
+  padding: 0 2px;
+  text-align: center;
+  font-size: 10px;
+  line-height: 1.5;
+  color: rgb(113 113 122 / 0.85);
+}
+
 .ad-card {
   position: relative;
   display: flex;
@@ -98,20 +119,24 @@ body {
   background: linear-gradient(160deg, #7c2d12 0%, #ea580c 40%, #fb7185 72%, #fbbf24 100%);
 }
 
-.ad-card-do {
-  background: linear-gradient(165deg, #003366 0%, #0069ff 52%, #31a8ff 100%);
+.ad-card-lty {
+  background: linear-gradient(
+    160deg,
+    #06333f 0%,
+    #0e7490 42%,
+    #38bdf8 78%,
+    #a5f3fc 100%
+  );
 }
 
-.ad-card-racknerd {
-  background: linear-gradient(165deg, #1a0508 0%, #9f1239 48%, #fb7185 100%);
-}
-
-.ad-card-nord {
-  background: linear-gradient(165deg, #07111f 0%, #1d4ed8 46%, #60a5fa 100%);
-}
-
-.ad-card-surfshark {
-  background: linear-gradient(165deg, #042f2e 0%, #0f766e 48%, #2dd4bf 100%);
+.ad-card-flybit {
+  background: linear-gradient(
+    160deg,
+    #1e1b4b 0%,
+    #4338ca 45%,
+    #7c8cf8 78%,
+    #c7d2fe 100%
+  );
 }
 
 .ad-card-glass {

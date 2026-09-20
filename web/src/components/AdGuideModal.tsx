@@ -17,6 +17,7 @@ export default function AdGuideModal({
   const { locale } = useLocale();
   const d = t(locale);
   const name = locale === "zh" ? slot.nameZh : slot.nameEn;
+  const guide = slot.guide ?? [];
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -60,7 +61,7 @@ export default function AdGuideModal({
         </div>
         <div className="ad-guide-body">
           <ol className="ad-guide-steps">
-            {slot.guide.map((step, i) => (
+            {guide.map((step, i) => (
               <li key={step.src} className="ad-guide-step">
                 <div className="ad-guide-step-head">
                   <span className="ad-guide-num">{i + 1}</span>

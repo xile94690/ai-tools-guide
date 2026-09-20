@@ -1,5 +1,5 @@
 /**
- * 左右侧栏正规联盟位（境外 VPS + 品牌 VPN）。
+ * 左右侧栏正规联盟位（境外 VPS + 机场）。
  *
  * 提成：把各厂后台生成的完整联盟链接填进 affiliateHrefs。
  * 空着则跳到官网产品页，能买但没有你的佣金。
@@ -7,30 +7,29 @@
  * 申请：
  * - Vultr         https://www.vultr.com/affiliates/
  * - 搬瓦工        https://bandwagonhost.com/affiliates-info.php
- * - DigitalOcean  https://www.digitalocean.com/affiliates
- * - RackNerd      https://www.racknerd.com/ （后台 Affiliates）
- * - NordVPN       https://nordvpn.com/affiliates/
- * - Surfshark     https://surfshark.com/affiliate
+ * - 蓝天云        https://lty02.com/ （注册后后台生成邀请码，替换 LTY_INVITE_CODE）
+ * - FlyBit        https://www.52fb.shop/ （同上，替换 FLYBIT_INVITE_CODE）
  */
 import { adGuides, type AdGuideStep } from "./ads-guide";
+
+/** 机场邀请码：换成自己后台的邀请码，推广才会记到你名下。 */
+const LTY_INVITE_CODE = "nSYgUWH9";
+const LTY_SITE = "https://lty02.com";
+const ltyInviteHref = `${LTY_SITE}/#/register?code=${LTY_INVITE_CODE}`;
+
+const FLYBIT_INVITE_CODE = "6CWRM6n1";
+const FLYBIT_SITE = "https://www.52fb.shop";
+const flybitInviteHref = `${FLYBIT_SITE}/#/register?code=${FLYBIT_INVITE_CODE}`;
 
 export const affiliateHrefs = {
   vultr: process.env.NEXT_PUBLIC_AD_VULTR_HREF?.trim() || "",
   bandwagon: process.env.NEXT_PUBLIC_AD_BWH_HREF?.trim() || "",
-  digitalocean: process.env.NEXT_PUBLIC_AD_DO_HREF?.trim() || "",
-  racknerd: process.env.NEXT_PUBLIC_AD_RACKNERD_HREF?.trim() || "",
-  nordvpn: process.env.NEXT_PUBLIC_AD_NORD_HREF?.trim() || "",
-  surfshark: process.env.NEXT_PUBLIC_AD_SURFSHARK_HREF?.trim() || "",
+  lty: process.env.NEXT_PUBLIC_AD_LTY_HREF?.trim() || ltyInviteHref,
+  flybit: process.env.NEXT_PUBLIC_AD_FLYBIT_HREF?.trim() || flybitInviteHref,
 };
 
-export type AdKind = "vps" | "vpn";
-export type AdTheme =
-  | "vultr"
-  | "bwh"
-  | "do"
-  | "racknerd"
-  | "nord"
-  | "surfshark";
+export type AdKind = "vps" | "vpn" | "proxy";
+export type AdTheme = "vultr" | "bwh" | "lty" | "flybit";
 
 export type AdSlot = {
   id: keyof typeof affiliateHrefs;
@@ -43,16 +42,15 @@ export type AdSlot = {
   taglineEn: string;
   ctaZh: string;
   ctaEn: string;
-  guide: AdGuideStep[];
+  /** 分步开通引导。留空则卡片直接跳转 href，不弹层。 */
+  guide?: AdGuideStep[];
 };
 
 const PRODUCT_PAGES: Record<keyof typeof affiliateHrefs, string> = {
   vultr: "https://www.vultr.com/products/cloud-compute/",
   bandwagon: "https://bandwagonhost.com/vps-hosting.php",
-  digitalocean: "https://www.digitalocean.com/pricing",
-  racknerd: "https://www.racknerd.com/vps",
-  nordvpn: "https://nordvpn.com/",
-  surfshark: "https://surfshark.com/",
+  lty: `${LTY_SITE}/`,
+  flybit: `${FLYBIT_SITE}/`,
 };
 
 function hrefFor(id: keyof typeof affiliateHrefs): string {
@@ -74,32 +72,6 @@ const catalog: AdSlot[] = [
     guide: adGuides.vultr,
   },
   {
-    id: "digitalocean",
-    theme: "do",
-    kind: "vps",
-    nameZh: "DigitalOcean",
-    nameEn: "DigitalOcean",
-    href: hrefFor("digitalocean"),
-    taglineZh: "开发者常用云主机",
-    taglineEn: "Cloud for developers",
-    ctaZh: "去开通",
-    ctaEn: "Get VPS",
-    guide: adGuides.digitalocean,
-  },
-  {
-    id: "racknerd",
-    theme: "racknerd",
-    kind: "vps",
-    nameZh: "RackNerd",
-    nameEn: "RackNerd",
-    href: hrefFor("racknerd"),
-    taglineZh: "美国便宜年付 VPS",
-    taglineEn: "Budget US yearly VPS",
-    ctaZh: "去开通",
-    ctaEn: "Get VPS",
-    guide: adGuides.racknerd,
-  },
-  {
     id: "bandwagon",
     theme: "bwh",
     kind: "vps",
@@ -113,38 +85,41 @@ const catalog: AdSlot[] = [
     guide: adGuides.bandwagon,
   },
   {
-    id: "nordvpn",
-    theme: "nord",
-    kind: "vpn",
-    nameZh: "NordVPN",
-    nameEn: "NordVPN",
-    href: hrefFor("nordvpn"),
-    taglineZh: "品牌 VPN 订阅",
-    taglineEn: "Brand VPN subscription",
-    ctaZh: "去订阅",
-    ctaEn: "Subscribe",
-    guide: adGuides.nordvpn,
+    id: "lty",
+    theme: "lty",
+    kind: "proxy",
+    nameZh: "蓝天云",
+    nameEn: "Lantian Cloud",
+    href: hrefFor("lty"),
+    taglineZh: "多地区节点 · 全平台客户端",
+    taglineEn: "Multi-region nodes, every platform",
+    ctaZh: "去开通",
+    ctaEn: "Get started",
   },
   {
-    id: "surfshark",
-    theme: "surfshark",
-    kind: "vpn",
-    nameZh: "Surfshark",
-    nameEn: "Surfshark",
-    href: hrefFor("surfshark"),
-    taglineZh: "不限设备 VPN",
-    taglineEn: "VPN, unlimited devices",
-    ctaZh: "去订阅",
-    ctaEn: "Subscribe",
-    guide: adGuides.surfshark,
+    id: "flybit",
+    theme: "flybit",
+    kind: "proxy",
+    nameZh: "FlyBit",
+    nameEn: "FlyBit",
+    href: hrefFor("flybit"),
+    taglineZh: "全球节点 · 一键订阅",
+    taglineEn: "Global nodes, one-tap import",
+    ctaZh: "去开通",
+    ctaEn: "Get started",
   },
 ];
 
+const LEFT_ORDER: (keyof typeof affiliateHrefs)[] = ["lty", "vultr"];
+
+const RIGHT_ORDER: (keyof typeof affiliateHrefs)[] = ["flybit", "bandwagon"];
+
+const inOrder = (order: (keyof typeof affiliateHrefs)[]) =>
+  order
+    .map((id) => catalog.find((slot) => slot.id === id))
+    .filter((slot): slot is AdSlot => Boolean(slot));
+
 export const adRails = {
-  left: catalog.filter((s) =>
-    s.id === "vultr" || s.id === "digitalocean" || s.id === "racknerd",
-  ),
-  right: catalog.filter((s) =>
-    s.id === "bandwagon" || s.id === "nordvpn" || s.id === "surfshark",
-  ),
+  left: inOrder(LEFT_ORDER),
+  right: inOrder(RIGHT_ORDER),
 };

@@ -30,8 +30,28 @@ function ShieldMark() {
   );
 }
 
+function RocketMark() {
+  return (
+    <svg viewBox="0 0 32 32" className="h-7 w-7" aria-hidden>
+      <path
+        fill="currentColor"
+        d="M16 3.8c3.5 2.3 5.5 6 5.5 10.3 0 2.7-.9 5.2-2.6 7.1h-5.8a11.2 11.2 0 0 1-2.6-7.1c0-4.3 2-8 5.5-10.3Z"
+        opacity="0.95"
+      />
+      <path
+        fill="currentColor"
+        d="M13.4 22.6h5.2l-1.5 3.8a1 1 0 0 1-.9.6h-.4a1 1 0 0 1-.9-.6l-1.5-3.8Z"
+        opacity="0.65"
+      />
+      <circle cx="16" cy="12" r="2.4" fill="#0f172a" opacity="0.35" />
+    </svg>
+  );
+}
+
 function Mark({ kind }: { kind: AdKind }) {
-  return kind === "vpn" ? <ShieldMark /> : <CloudMark />;
+  if (kind === "vpn") return <ShieldMark />;
+  if (kind === "proxy") return <RocketMark />;
+  return <CloudMark />;
 }
 
 function AdCard({
@@ -46,9 +66,10 @@ function AdCard({
   const name = locale === "zh" ? slot.nameZh : slot.nameEn;
   const tagline = locale === "zh" ? slot.taglineZh : slot.taglineEn;
   const cta = locale === "zh" ? slot.ctaZh : slot.ctaEn;
+  const hasGuide = Boolean(slot.guide?.length);
 
-  return (
-    <button type="button" className="ad-card" onClick={() => onOpen(slot)}>
+  const body = (
+    <>
       <span className={`ad-card-fill ad-card-${slot.theme}`} aria-hidden />
       <span className="ad-card-shine" aria-hidden />
       <span className="ad-card-grid" aria-hidden />
@@ -63,24 +84,48 @@ function AdCard({
       <p className="ad-card-name">{name}</p>
       <p className="ad-card-tagline">{tagline}</p>
       <span className="ad-card-cta">{cta}</span>
+    </>
+  );
+
+  // 没有分步引导的位直接跳转，不再弹层。
+  if (!hasGuide) {
+    return (
+      <a
+        className="ad-card"
+        href={slot.href}
+        target="_blank"
+        rel="sponsored noopener noreferrer"
+      >
+        {body}
+      </a>
+    );
+  }
+
+  return (
+    <button type="button" className="ad-card" onClick={() => onOpen(slot)}>
+      {body}
     </button>
   );
 }
 
 export default function AdRails() {
   const [open, setOpen] = useState<AdSlot | null>(null);
+  const { locale } = useLocale();
+  const d = t(locale);
 
   return (
     <>
-      <aside className="ad-rail ad-rail-left" aria-label="Sponsored">
+      <aside className="ad-rail ad-rail-left" aria-label={d.adSponsor}>
         {adRails.left.map((slot) => (
           <AdCard key={slot.id} slot={slot} onOpen={setOpen} />
         ))}
+        <p className="ad-rail-note">{d.adRailNote}</p>
       </aside>
-      <aside className="ad-rail ad-rail-right" aria-label="Sponsored">
+      <aside className="ad-rail ad-rail-right" aria-label={d.adSponsor}>
         {adRails.right.map((slot) => (
           <AdCard key={slot.id} slot={slot} onOpen={setOpen} />
         ))}
+        <p className="ad-rail-note">{d.adRailNote}</p>
       </aside>
       {open ? (
         <AdGuideModal slot={open} onClose={() => setOpen(null)} />

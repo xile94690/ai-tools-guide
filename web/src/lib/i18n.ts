@@ -80,6 +80,9 @@ const zh = {
   notFoundTitle: "页面不存在",
   notFoundBody: "这个地址没有对应的页面，回首页看看其他工具吧。",
   adSponsor: "推广",
+  adDisclaimer:
+    "侧栏标注「推广」的为第三方广告位，本站不参与其运营，也不对其服务、价格与稳定性作任何担保。下单或订阅前请自行核实，风险自担。",
+  adRailNote: "推广位 · 第三方服务，风险自担",
   adCancel: "取消",
   adGo: "去官网开通",
   adGuideHint:
@@ -168,6 +171,9 @@ const en: { [K in keyof typeof zh]: (typeof zh)[K] } = {
   notFoundTitle: "Page not found",
   notFoundBody: "This address does not exist. Head home and browse the tools.",
   adSponsor: "Sponsored",
+  adDisclaimer:
+    "Slots marked “Sponsored” are third-party ads. We do not run them and make no guarantee about their service, pricing or reliability. Please check before you pay — you proceed at your own risk.",
+  adRailNote: "Sponsored · third-party service",
   adCancel: "Cancel",
   adGo: "Continue to site",
   adGuideHint:
