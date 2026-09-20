@@ -47,7 +47,7 @@ export default function LoginPaths({
                   className="h-8 w-8 object-contain"
                 />
                 <span className="min-w-0 flex-1">
-                  <span className="block font-bold text-zinc-900">{app.name}</span>
+                  <span className="block font-semibold text-zinc-900">{app.name}</span>
                   <span className="block truncate text-xs text-zinc-500">
                     {locale === "zh" ? app.taglineZh : app.taglineEn}
                   </span>
@@ -78,7 +78,7 @@ export default function LoginPaths({
             href={`#${installAnchor ?? "desktop"}`}
             className="rounded-xl border border-zinc-200 p-4 transition-colors hover:border-zinc-400 hover:bg-zinc-50"
           >
-            <p className="flex items-center gap-2 font-bold text-zinc-900">
+            <p className="flex items-center gap-2 font-semibold text-zinc-900">
               <IconUser className="h-4 w-4" />
               {d.loginAccount}
             </p>
@@ -92,7 +92,7 @@ export default function LoginPaths({
             href={localizedPath(locale, `/tool/${cli.slug}`)}
             className="rounded-xl border border-zinc-200 p-4 transition-colors hover:border-zinc-400 hover:bg-zinc-50"
           >
-            <p className="flex items-center gap-2 font-bold text-zinc-900">
+            <p className="flex items-center gap-2 font-semibold text-zinc-900">
               <IconTerminal className="h-4 w-4" />
               {cli.name}
             </p>
@@ -108,7 +108,7 @@ export default function LoginPaths({
             href={localizedPath(locale, `/tool/${CC_SWITCH_SLUG}`)}
             className="rounded-xl border border-zinc-900 p-4 ring-1 ring-zinc-900 transition-colors hover:bg-zinc-50"
           >
-            <p className="flex items-center gap-2 font-bold text-zinc-900">
+            <p className="flex items-center gap-2 font-semibold text-zinc-900">
               <IconKey className="h-4 w-4" />
               {d.loginApi}
             </p>

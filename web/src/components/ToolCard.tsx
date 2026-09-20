@@ -25,7 +25,7 @@ export function ToolCard({ tool, locale }: { tool: Tool; locale: Locale }) {
           />
         </div>
         <div className="flex min-w-0 flex-1 items-center justify-between gap-2">
-          <h3 className="truncate text-lg font-bold group-hover:text-zinc-600">
+          <h3 className="truncate text-lg font-semibold group-hover:text-zinc-600">
             {tool.name}
           </h3>
           <span

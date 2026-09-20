@@ -16,7 +16,7 @@ export default function CategoryView({ category }: { category: string }) {
   return (
     <main className="shell flex-1 py-10">
       <BackLink locale={locale} />
-      <h1 className="mt-2 text-2xl font-black">
+      <h1 className="mt-2 text-2xl font-bold">
         {cat ? (locale === "zh" ? cat.zh : cat.en) : category}
       </h1>
       <p className="mt-1 text-sm text-zinc-500">{d.toolsCount(list.length)}</p>

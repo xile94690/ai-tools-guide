@@ -1,5 +1,23 @@
 @import "tailwindcss";
 
+/*
+ * 字体栈：西文优先取各平台原生最佳字体，中文再接现代 UI 字体。
+ * 全部走系统字体 —— 国内访问 Google Fonts 不稳，中文 webfont 又动辄几 MB，
+ * 对纯静态站来说自托管不划算。
+ */
+@theme {
+  --font-sans:
+    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "PingFang SC", "HarmonyOS Sans SC", "MiSans",
+    "Source Han Sans SC", "Noto Sans SC", "Noto Sans CJK SC",
+    "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei",
+    "WenQuanYi Micro Hei", sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+
+  --font-mono:
+    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
+    monospace;
+}
+
 .shell {
   box-sizing: border-box;
   width: 100%;
@@ -9,6 +27,7 @@
 
 html {
   color-scheme: light;
+  -webkit-text-size-adjust: 100%;
 }
 
 /* 全站隐藏滚动条，但保留滚动能力（滚轮 / 触控 / 键盘 / 锚点跳转照常） */
@@ -24,12 +43,24 @@ html {
 }
 
 body {
-  font-family:
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    "Segoe UI",
-    sans-serif;
+  font-family: var(--font-sans);
+}
+
+/*
+ * 标题：中文在 900 字重下笔画会糊在一起（看起来"太黑"），700 已经够；
+ * 行高收到 1.32，大标题不再像正文一样松；balance 让换行更整齐。
+ */
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.32;
+  text-wrap: balance;
+}
+
+::selection {
+  background: rgb(24 24 27 / 0.88);
+  color: #fff;
 }
 
 .home-hero {
@@ -227,9 +258,9 @@ body {
 .ad-card-name {
   margin-top: 0.45rem;
   font-size: 1.05rem;
-  font-weight: 900;
+  font-weight: 700;
   line-height: 1.2;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   overflow-wrap: anywhere;
   text-shadow: 0 1px 8px rgb(0 0 0 / 0.25);
 }
@@ -327,7 +358,7 @@ body {
 .ad-guide-title {
   margin-top: 0.2rem;
   font-size: 1.25rem;
-  font-weight: 800;
+  font-weight: 700;
   color: rgb(24 24 27);
 }
 
@@ -382,7 +413,7 @@ body {
 
 .ad-guide-step-head h3 {
   font-size: 1rem;
-  font-weight: 800;
+  font-weight: 600;
   color: rgb(24 24 27);
 }
 
@@ -427,4 +458,81 @@ body {
 
 .ad-guide-go:hover {
   background: rgb(39 39 42);
+}
+
+/* 「即将离开」中转页 */
+.ad-gate-note {
+  margin: 0.9rem 0 0;
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgb(63 63 70);
+}
+
+.ad-gate-status {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 0.9rem;
+  border-radius: 0.85rem;
+  padding: 0.7rem 0.9rem;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.ad-gate-status-checking {
+  background: rgb(244 244 245);
+  color: rgb(82 82 91);
+}
+
+.ad-gate-status-ok {
+  background: rgb(236 253 245);
+  color: rgb(6 95 70);
+}
+
+.ad-gate-status-fail {
+  background: rgb(255 247 237);
+  color: rgb(154 52 18);
+}
+
+.ad-gate-spin {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgb(161 161 170 / 0.35);
+  border-top-color: rgb(82 82 91);
+  border-radius: 999px;
+  animation: ad-gate-rotate 700ms linear infinite;
+}
+
+@keyframes ad-gate-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ad-gate-spin {
+    animation-duration: 2s;
+  }
+}
+
+.ad-gate-retry {
+  margin-top: 0.7rem;
+  border: 1px solid rgb(228 228 231);
+  border-radius: 999px;
+  background: #fff;
+  padding: 0.45rem 1rem;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgb(63 63 70);
+  cursor: pointer;
+}
+
+.ad-gate-retry:hover {
+  background: rgb(244 244 245);
+}
+
+.ad-gate-go-off {
+  cursor: not-allowed;
+  opacity: 0.45;
 }

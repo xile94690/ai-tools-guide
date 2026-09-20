@@ -200,7 +200,7 @@ export function SectionTitle({
 }) {
   return (
     <h2
-      className={`flex items-center gap-2.5 font-black text-zinc-900 ${
+      className={`flex items-center gap-2.5 font-bold text-zinc-900 ${
         size === "lg" ? "text-xl" : "text-lg"
       }`}
     >

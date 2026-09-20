@@ -44,7 +44,7 @@ export default function HomePage() {
                 href={localizedPath(locale, `/category/${c.id}`)}
                 className="rounded-2xl border border-zinc-200 bg-white p-4 text-center transition-shadow hover:shadow-md"
               >
-                <div className="font-bold">{locale === "zh" ? c.zh : c.en}</div>
+                <div className="font-semibold">{locale === "zh" ? c.zh : c.en}</div>
                 <div className="mt-1 text-xs text-zinc-500">
                   {d.toolsCount(count)}
                 </div>

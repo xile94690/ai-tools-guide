@@ -11,7 +11,7 @@ export default function SiteHeader() {
   return (
     <header className="border-b border-zinc-200 bg-white">
       <div className="shell flex items-center justify-between py-4">
-        <Link href="/" className="text-xl font-black tracking-tight">
+        <Link href="/" className="text-xl font-bold tracking-tight">
           {d.siteName}
         </Link>
         <LangSwitch />

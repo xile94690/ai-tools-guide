@@ -68,7 +68,7 @@ export default function ToolView({
               </div>
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-2.5">
-                  <h1 className="text-3xl font-black tracking-tight text-zinc-900">
+                  <h1 className="text-3xl font-bold tracking-tight text-zinc-900">
                     {tool.name}
                   </h1>
                   <span
@@ -102,7 +102,7 @@ export default function ToolView({
                 href={tool.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-full bg-zinc-900 px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-zinc-700"
+                className="inline-flex items-center gap-1.5 rounded-full bg-zinc-900 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-zinc-700"
               >
                 {d.officialSite}
                 <ArrowRight />
@@ -181,7 +181,7 @@ export default function ToolView({
           <div className="mt-3 space-y-4">
             {faq.map((f, i) => (
               <div key={i}>
-                <p className="font-bold text-zinc-900">Q：{f.q}</p>
+                <p className="font-semibold text-zinc-900">Q：{f.q}</p>
                 <p className="mt-1 leading-7 text-zinc-700">A：{f.a}</p>
               </div>
             ))}

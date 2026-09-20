@@ -38,7 +38,7 @@ function StepList({ steps, locale }: { steps: Step[]; locale: Locale }) {
             <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-zinc-900 text-xs font-bold text-white">
               {i + 1}
             </span>
-            <h3 className="text-lg font-bold text-zinc-900">{step.title}</h3>
+            <h3 className="text-lg font-semibold text-zinc-900">{step.title}</h3>
           </div>
           <div className="mt-3 pl-0 sm:pl-10">
             {step.blocks.map((block, j) => (
@@ -70,7 +70,7 @@ function Prereq({
               {i + 1}
             </span>
             <div className="min-w-0">
-              <p className="font-bold text-zinc-900">{item.label}</p>
+              <p className="font-semibold text-zinc-900">{item.label}</p>
               <p className="mt-1 text-sm leading-6 text-zinc-600">
                 <RichText text={item.detail} />
               </p>
@@ -99,7 +99,7 @@ function Plans({ plans, locale }: { plans: Plan[]; locale: Locale }) {
             }`}
           >
             <div className="flex items-center justify-between gap-2">
-              <p className="font-bold text-zinc-900">{plan.name}</p>
+              <p className="font-semibold text-zinc-900">{plan.name}</p>
               {plan.highlight && (
                 <span className="rounded-full bg-zinc-900 px-2 py-0.5 text-[11px] font-medium text-white">
                   {d.recommended}
@@ -173,7 +173,7 @@ function EnvChecks({
                 {i + 1}
               </span>
               <div className="min-w-0 flex-1">
-                <p className="font-bold text-zinc-900">{item.label}</p>
+                <p className="font-semibold text-zinc-900">{item.label}</p>
                 <p className="mt-1 text-sm leading-6 text-zinc-600">
                   <span className="font-medium text-zinc-500">{d.envHow}：</span>
                   <RichText text={item.check} />
@@ -372,7 +372,7 @@ export default function Tutorial({
             <div className="mt-4 divide-y divide-zinc-200 overflow-hidden rounded-2xl border border-zinc-200 bg-white">
               {data.troubles.map((item) => (
                 <div key={item.problem} className="p-5">
-                  <p className="flex items-start gap-2 font-bold text-zinc-900">
+                  <p className="flex items-start gap-2 font-semibold text-zinc-900">
                     <IconClose className="mt-0.5 h-4 w-4 text-zinc-400" />
                     <span>
                       <RichText text={item.problem} />
