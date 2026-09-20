@@ -12,11 +12,8 @@ import Tutorial from "@/components/Tutorial";
 import LoginPaths from "@/components/LoginPaths";
 import RelatedTools from "@/components/RelatedTools";
 import {
-  IconCheck,
-  IconDownload,
   IconFile,
   IconHelp,
-  IconSparkle,
   SectionTitle,
 } from "@/components/Icons";
 import { useLocale } from "@/components/LocaleProvider";
@@ -39,8 +36,6 @@ export default function ToolView({
   const { locale } = useLocale();
   const d = t(locale);
   const desc = locale === "zh" ? tool.descZh : tool.descEn;
-  const install = locale === "zh" ? tool.installZh : tool.installEn;
-  const usage = locale === "zh" ? tool.usageZh : tool.usageEn;
   const faq = locale === "zh" ? tool.faqZh : tool.faqEn;
   const pricing = locale === "zh" ? tool.pricingZh : tool.pricingEn;
   const tagline = locale === "zh" ? tool.taglineZh : tool.taglineEn;
@@ -140,39 +135,7 @@ export default function ToolView({
             locale={locale}
             website={tool.website}
           />
-        ) : (
-          <>
-            <section className="mt-4 rounded-2xl border border-zinc-200 bg-white p-6">
-              <SectionTitle icon={IconDownload} size="md">
-                {d.install}
-              </SectionTitle>
-              <ol className="mt-3 space-y-2.5">
-                {install.map((step, i) => (
-                  <li key={i} className="flex gap-3 leading-7 text-zinc-700">
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-zinc-900 text-xs font-bold text-white">
-                      {i + 1}
-                    </span>
-                    {step}
-                  </li>
-                ))}
-              </ol>
-            </section>
-
-            <section className="mt-4 rounded-2xl border border-zinc-200 bg-white p-6">
-              <SectionTitle icon={IconSparkle} size="md">
-                {d.usage}
-              </SectionTitle>
-              <ul className="mt-3 space-y-2.5">
-                {usage.map((u, i) => (
-                  <li key={i} className="flex gap-2 leading-7 text-zinc-700">
-                    <IconCheck className="mt-1 h-4 w-4 text-emerald-600" />
-                    {u}
-                  </li>
-                ))}
-              </ul>
-            </section>
-          </>
-        )}
+        ) : null}
 
         <section className="mt-10 rounded-2xl border border-zinc-200 bg-white p-6">
           <SectionTitle icon={IconHelp} size="md">

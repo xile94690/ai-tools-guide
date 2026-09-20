@@ -7,6 +7,7 @@ import type {
   Step,
   Tutorial as TutorialData,
 } from "@/lib/tutorials";
+import { partitionSteps } from "@/lib/tutorial-scope";
 import { isNetworkEnvLabel, networkCurlCommand } from "@/lib/network";
 import CodeBlock from "@/components/CodeBlock";
 import Shot from "@/components/Shot";
@@ -16,11 +17,13 @@ import {
   IconCheck,
   IconClose,
   IconCreditCard,
+  IconFile,
   IconInfo,
   IconLifeBuoy,
   IconList,
   IconMonitor,
   IconScan,
+  IconSparkle,
   IconTerminal,
   IconWallet,
   SectionTitle,
@@ -213,6 +216,57 @@ function EnvChecks({
   );
 }
 
+function ExtraSteps({ steps, locale }: { steps: Step[]; locale: Locale }) {
+  const d = t(locale);
+  if (steps.length === 0) return null;
+  return (
+    <details className="mt-6 rounded-2xl border border-zinc-200 bg-zinc-50 px-5 py-4">
+      <summary className="cursor-pointer list-none font-semibold text-zinc-900 marker:content-none [&::-webkit-details-marker]:hidden">
+        <span className="inline-flex items-center gap-2">
+          <IconSparkle className="h-4 w-4" />
+          {d.advanced}
+        </span>
+      </summary>
+      <p className="mt-2 text-sm text-zinc-500">{d.advancedHint}</p>
+      <StepList steps={steps} locale={locale} />
+    </details>
+  );
+}
+
+function Configs({
+  items,
+  locale,
+}: {
+  items: TutorialData["configs"];
+  locale: Locale;
+}) {
+  const d = t(locale);
+  if (items.length === 0) return null;
+  return (
+    <section id="configs" className="mt-10 scroll-mt-24">
+      <SectionTitle icon={IconFile}>{d.configs}</SectionTitle>
+      <div className="mt-4 space-y-4">
+        {items.map((item) => (
+          <div
+            key={item.path}
+            className="overflow-hidden rounded-2xl border border-zinc-200 bg-white"
+          >
+            <p className="border-b border-zinc-100 px-5 py-3 text-sm font-semibold text-zinc-900">
+              {item.path}
+            </p>
+            <p className="px-5 pt-3 text-sm leading-6 text-zinc-600">
+              <RichText text={item.desc} />
+            </p>
+            <div className="px-5 pb-4">
+              <CodeBlock code={item.code} lang="bash" locale={locale} />
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function BlockView({ block, locale }: { block: Block; locale: Locale }) {
   const d = t(locale);
 
@@ -300,18 +354,37 @@ export default function Tutorial({
   const plans = data.plans ?? [];
   const envCheck = data.envCheck ?? [];
   const prereq = data.prereq ?? [];
-  const desktop = data.desktop ?? [];
-  const cli = data.cli ?? [];
-  const dual = desktop.length > 0 && cli.length > 0;
-  const looseSteps = desktop.length === 0 && cli.length === 0 ? data.steps : [];
+  const desktopParts = partitionSteps(data.desktop);
+  const cliParts = partitionSteps(data.cli);
+  const hasSurfaces = desktopParts.starter.length + desktopParts.extra.length + cliParts.starter.length + cliParts.extra.length > 0;
+  const stepParts = hasSurfaces
+    ? { starter: [] as Step[], extra: [] as Step[] }
+    : partitionSteps(data.steps);
+  const dual =
+    desktopParts.starter.length + desktopParts.extra.length > 0 &&
+    cliParts.starter.length + cliParts.extra.length > 0;
+  const configs = data.configs ?? [];
 
   const sections = [
     { id: "prereq", label: d.prereq, show: prereq.length > 0 },
     { id: "plans", label: d.plans, show: plans.length > 0 },
     { id: "env", label: d.envCheck, show: true },
-    { id: "desktop", label: d.desktopUsage, show: desktop.length > 0 },
-    { id: "cli", label: d.cliUsage, show: cli.length > 0 },
-    { id: "steps", label: d.stepsTitle, show: looseSteps.length > 0 },
+    {
+      id: "desktop",
+      label: d.desktopUsage,
+      show: desktopParts.starter.length + desktopParts.extra.length > 0,
+    },
+    {
+      id: "cli",
+      label: d.cliUsage,
+      show: cliParts.starter.length + cliParts.extra.length > 0,
+    },
+    {
+      id: "steps",
+      label: d.stepsTitle,
+      show: stepParts.starter.length + stepParts.extra.length > 0,
+    },
+    { id: "configs", label: d.configs, show: configs.length > 0 },
     { id: "troubles", label: d.troubles, show: data.troubles.length > 0 },
     { id: "cost", label: d.cost, show: data.cost.length > 0 },
   ].filter((s) => s.show);
@@ -345,26 +418,37 @@ export default function Tutorial({
           {d.beginnerHint}
         </p>
 
-        {desktop.length > 0 && (
+        {desktopParts.starter.length + desktopParts.extra.length > 0 && (
           <section id="desktop" className="mt-10 scroll-mt-24">
             <SectionTitle icon={IconMonitor}>{d.desktopUsage}</SectionTitle>
-            <StepList steps={desktop} locale={locale} />
+            {desktopParts.starter.length > 0 && (
+              <StepList steps={desktopParts.starter} locale={locale} />
+            )}
+            <ExtraSteps steps={desktopParts.extra} locale={locale} />
           </section>
         )}
 
-        {cli.length > 0 && (
+        {cliParts.starter.length + cliParts.extra.length > 0 && (
           <section id="cli" className="mt-10 scroll-mt-24">
             <SectionTitle icon={IconTerminal}>{d.cliUsage}</SectionTitle>
-            <StepList steps={cli} locale={locale} />
+            {cliParts.starter.length > 0 && (
+              <StepList steps={cliParts.starter} locale={locale} />
+            )}
+            <ExtraSteps steps={cliParts.extra} locale={locale} />
           </section>
         )}
 
-        {looseSteps.length > 0 && (
+        {stepParts.starter.length + stepParts.extra.length > 0 && (
           <section id="steps" className="mt-10 scroll-mt-24">
             <SectionTitle icon={IconList}>{d.stepsTitle}</SectionTitle>
-            <StepList steps={looseSteps} locale={locale} />
+            {stepParts.starter.length > 0 && (
+              <StepList steps={stepParts.starter} locale={locale} />
+            )}
+            <ExtraSteps steps={stepParts.extra} locale={locale} />
           </section>
         )}
+
+        <Configs items={configs} locale={locale} />
 
         {data.troubles.length > 0 && (
           <section id="troubles" className="mt-10 scroll-mt-24">

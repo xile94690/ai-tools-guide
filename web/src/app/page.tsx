@@ -1,11 +1,15 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import Link from "next/link";
 import { categories } from "@/lib/site";
 import { t } from "@/lib/i18n";
 import { localizedPath } from "@/lib/paths";
-import { tools, featuredTools } from "@/lib/tools";
+import {
+  tools,
+  toolsByRegionFilter,
+  type RegionFilter,
+} from "@/lib/tools";
 import { ToolCard } from "@/components/ToolCard";
 import SearchBox from "@/components/SearchBox";
 import TypewriterTitle from "@/components/TypewriterTitle";
@@ -14,6 +18,10 @@ import { useLocale } from "@/components/LocaleProvider";
 export default function HomePage() {
   const { locale } = useLocale();
   const d = t(locale);
+  const [region, setRegion] = useState<RegionFilter>("all");
+  const list = toolsByRegionFilter(region);
+  const listTitle =
+    region === "all" ? d.featured : region === "domestic" ? d.domestic : d.global;
 
   return (
     <div className="flex flex-1 flex-col">
@@ -53,16 +61,38 @@ export default function HomePage() {
           })}
         </div>
 
-        <h2 className="mt-10 text-lg font-bold">{d.featured}</h2>
-        <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {featuredTools.map((tool) => (
-            <ToolCard key={tool.slug} tool={tool} locale={locale} />
-          ))}
+        <div className="mt-10 flex flex-wrap items-end justify-between gap-3">
+          <h2 className="text-lg font-bold">{listTitle}</h2>
+          <div
+            className="flex flex-wrap gap-2"
+            role="group"
+            aria-label={d.filterRegion}
+          >
+            {(
+              [
+                ["all", d.filterAll],
+                ["domestic", d.domestic],
+                ["global", d.global],
+              ] as const
+            ).map(([id, label]) => (
+              <button
+                key={id}
+                type="button"
+                onClick={() => setRegion(id)}
+                className={`rounded-full px-3 py-1 text-sm font-medium transition-colors ${
+                  region === id
+                    ? "bg-zinc-900 text-white"
+                    : "border border-zinc-200 bg-white text-zinc-600 hover:border-zinc-400"
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
         </div>
-
-        <h2 className="mt-10 text-lg font-bold">{d.allTools}</h2>
+        <p className="mt-1 text-sm text-zinc-500">{d.toolsCount(list.length)}</p>
         <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {tools.map((tool) => (
+          {list.map((tool) => (
             <ToolCard key={tool.slug} tool={tool} locale={locale} />
           ))}
         </div>

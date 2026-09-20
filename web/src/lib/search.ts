@@ -127,3 +127,24 @@ export function searchTools(query: string, _locale?: Locale): Tool[] {
 
   return ranked.map((row) => row.tool);
 }
+
+export type SearchEnterAction =
+  | { type: "tool"; slug: string }
+  | { type: "search"; q: string }
+  | { type: "none" };
+
+/** Enter in the search box: open the highlighted (or first) hit, else the results page. */
+export function searchEnterAction(
+  query: string,
+  hits: { slug: string }[],
+  activeIndex: number,
+): SearchEnterAction {
+  const q = query.trim();
+  if (!q) return { type: "none" };
+  if (hits.length > 0) {
+    const index =
+      activeIndex >= 0 && activeIndex < hits.length ? activeIndex : 0;
+    return { type: "tool", slug: hits[index].slug };
+  }
+  return { type: "search", q };
+}

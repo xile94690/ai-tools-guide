@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isStarterStep, starterSteps } from "./tutorial-scope";
+import { isStarterStep, partitionSteps, starterSteps } from "./tutorial-scope";
 import { getTutorial } from "./tutorials";
 
 describe("starterSteps", () => {
@@ -34,16 +34,16 @@ describe("starterSteps", () => {
 });
 
 describe("getTutorial scope", () => {
-  it("hides extras and configs on ChatGPT", () => {
+  it("keeps starter and advanced ChatGPT steps, and partitions extras", () => {
     const tut = getTutorial("chatgpt", "zh");
     const titles = (tut?.desktop ?? tut?.steps ?? []).map((s) => s.title);
     expect(titles.some((t) => t.includes("打开官网"))).toBe(true);
-    expect(titles.some((t) => t.includes("核心用法"))).toBe(false);
-    expect(titles.some((t) => t.includes("进阶"))).toBe(false);
-    expect(titles.some((t) => t.includes("玩法"))).toBe(false);
-    expect(titles.some((t) => t.includes("隐私"))).toBe(false);
-    expect(titles.some((t) => t.includes("速查"))).toBe(false);
-    expect(tut?.configs).toEqual([]);
+    expect(titles.some((t) => t.includes("核心用法"))).toBe(true);
+    expect(titles.some((t) => t.includes("进阶"))).toBe(true);
+    const parts = partitionSteps(tut?.desktop ?? tut?.steps);
+    expect(parts.starter.some((s) => s.title.includes("打开官网"))).toBe(true);
+    expect(parts.extra.some((s) => s.title.includes("核心用法"))).toBe(true);
+    expect(parts.extra.some((s) => s.title.includes("进阶"))).toBe(true);
   });
 
   it("keeps API key + CC Switch as a starter step on Claude Code", () => {

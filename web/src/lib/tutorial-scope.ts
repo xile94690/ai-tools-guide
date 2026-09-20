@@ -11,3 +11,16 @@ export function isStarterStep(step: Step): boolean {
 export function starterSteps(steps: Step[] | undefined): Step[] {
   return (steps ?? []).filter(isStarterStep);
 }
+
+export function partitionSteps(steps: Step[] | undefined): {
+  starter: Step[];
+  extra: Step[];
+} {
+  const starter: Step[] = [];
+  const extra: Step[] = [];
+  for (const step of steps ?? []) {
+    if (isStarterStep(step)) starter.push(step);
+    else extra.push(step);
+  }
+  return { starter, extra };
+}

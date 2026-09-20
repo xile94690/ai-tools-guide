@@ -6,8 +6,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import type { Locale } from "@/lib/site";
 import { categoryById } from "@/lib/site";
 import { t } from "@/lib/i18n";
-import { localizedPath, publicUrl } from "@/lib/paths";
-import { searchTools } from "@/lib/search";
+import { localizedPath, publicUrl, withQuery } from "@/lib/paths";
+import { searchEnterAction, searchTools } from "@/lib/search";
 import { toolIcon, type Tool } from "@/lib/tools";
 
 const MAX_HITS = 8;
@@ -49,9 +49,33 @@ export default function SearchBox({
     router.push(localizedPath(locale, `/tool/${tool.slug}`));
   };
 
+  const goEnter = () => {
+    const action = searchEnterAction(q, hits, active);
+    if (action.type === "tool") {
+      const tool = hits.find((hit) => hit.slug === action.slug);
+      if (tool) goTool(tool);
+      return;
+    }
+    if (action.type === "search") {
+      setOpen(false);
+      router.push(
+        withQuery(
+          localizedPath(locale, "/search"),
+          `q=${encodeURIComponent(action.q)}`,
+        ),
+      );
+    }
+  };
+
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Escape") {
       setOpen(false);
+      return;
+    }
+    if (e.key === "Enter") {
+      if (e.nativeEvent.isComposing) return;
+      e.preventDefault();
+      goEnter();
       return;
     }
     if (!showPanel) return;
@@ -67,8 +91,6 @@ export default function SearchBox({
         if (!hits.length) return -1;
         return i < 0 ? hits.length - 1 : (i - 1 + hits.length) % hits.length;
       });
-    } else if (e.key === "Enter") {
-      e.preventDefault();
     }
   };
 

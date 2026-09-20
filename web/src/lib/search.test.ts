@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { searchTools } from "./search";
+import { searchEnterAction, searchTools } from "./search";
 
 describe("searchTools", () => {
   it("returns nothing for empty, tiny, or generic queries", () => {
@@ -44,5 +44,31 @@ describe("searchTools", () => {
     const hits = searchTools("绘画");
     expect(hits.length).toBeGreaterThan(0);
     expect(hits.every((t) => t.category === "image")).toBe(true);
+  });
+});
+
+describe("searchEnterAction", () => {
+  const hits = [{ slug: "chatgpt" }, { slug: "claude" }];
+
+  it("does nothing on an empty query", () => {
+    expect(searchEnterAction("  ", hits, 0)).toEqual({ type: "none" });
+  });
+
+  it("opens the highlighted hit, or the first hit if none is highlighted", () => {
+    expect(searchEnterAction("chat", hits, 1)).toEqual({
+      type: "tool",
+      slug: "claude",
+    });
+    expect(searchEnterAction("chat", hits, -1)).toEqual({
+      type: "tool",
+      slug: "chatgpt",
+    });
+  });
+
+  it("goes to the search page when nothing matches", () => {
+    expect(searchEnterAction("zzzz", [], -1)).toEqual({
+      type: "search",
+      q: "zzzz",
+    });
   });
 });

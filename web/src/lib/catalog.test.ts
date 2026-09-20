@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { categories } from "./site";
-import { getTool, tools, toolIcon } from "./tools";
+import { getTool, tools, toolIcon, toolsByRegionFilter } from "./tools";
 import { getTutorial, tutorials } from "./tutorials";
 import { dict } from "./i18n";
 import { adRails } from "./ads";
@@ -84,6 +84,26 @@ describe("catalog integrity", () => {
 
   it("keeps zh/en dictionary keys in sync", () => {
     expect(Object.keys(dict.en).sort()).toEqual(Object.keys(dict.zh).sort());
+  });
+
+  it("keeps tool records free of unused install/usage copy", () => {
+    for (const tool of tools) {
+      expect(tool).not.toHaveProperty("installZh");
+      expect(tool).not.toHaveProperty("usageZh");
+    }
+  });
+
+  it("filters homepage tools by region without duplicating the full catalog", () => {
+    const all = toolsByRegionFilter("all");
+    expect(all.length).toBeGreaterThan(0);
+    expect(all.length).toBeLessThan(tools.length);
+    expect(all.every((tool) => tool.featured)).toBe(true);
+    expect(
+      toolsByRegionFilter("domestic").every((tool) => tool.region !== "global"),
+    ).toBe(true);
+    expect(
+      toolsByRegionFilter("global").every((tool) => tool.region !== "domestic"),
+    ).toBe(true);
   });
 
   it("gates every proxy ad slot behind the leaving notice", () => {

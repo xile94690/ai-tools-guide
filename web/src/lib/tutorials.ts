@@ -11,7 +11,7 @@ import { extraSurfaces } from "./tutorials-batch-surfaces";
 import { ccSwitchTutorials } from "./tutorials-batch-ccswitch";
 import { cnIdeTutorials } from "./tutorials-batch-cn-ide";
 import { cnAppTutorials } from "./tutorials-batch-cn-apps";
-import { starterSteps } from "./tutorial-scope";
+
 
 export type {
   Block,
@@ -1389,10 +1389,6 @@ export const getTutorial = (slug: string, locale: Locale) => {
       ...base,
       plans,
       envCheck,
-      steps: starterSteps(base.steps),
-      desktop: starterSteps(base.desktop),
-      cli: starterSteps(base.cli),
-      configs: [],
     };
   }
 
@@ -1425,9 +1421,8 @@ export const getTutorial = (slug: string, locale: Locale) => {
     ...base,
     plans,
     envCheck,
-    desktop: starterSteps(desktop),
-    cli: starterSteps(cli),
-    steps: starterSteps(base.steps),
-    configs: [],
+    desktop,
+    cli,
+    steps: base.steps,
   };
 };
