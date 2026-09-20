@@ -1429,6 +1429,5 @@ export const getTutorial = (slug: string, locale: Locale) => {
     cli: starterSteps(cli),
     steps: starterSteps(base.steps),
     configs: [],
-    prereq: [],
   };
 };

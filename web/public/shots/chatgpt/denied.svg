@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" width="1200" height="760" font-family="-apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif">
+  <rect width="1200" height="760" fill="#fafafa"/>
+  <rect x="40" y="40" width="1120" height="680" rx="16" fill="#ffffff" stroke="#e4e4e7"/>
+  <path d="M56 40 h1088 a16 16 0 0 1 16 16 v28 h-1120 v-28 a16 16 0 0 1 16 -16 z" fill="#f4f4f5"/>
+  <line x1="40" y1="84" x2="1160" y2="84" stroke="#e4e4e7"/>
+  <circle cx="76" cy="62" r="7" fill="#ff5f57"/>
+  <circle cx="98" cy="62" r="7" fill="#febc2e"/>
+  <circle cx="120" cy="62" r="7" fill="#28c840"/>
+  <rect x="360" y="48" width="480" height="28" rx="14" fill="#fee2e2"/>
+  <text x="600" y="67" text-anchor="middle" fill="#b91c1c" font-size="14">chatgpt.com — 打不开 / Access denied</text>
+
+  <rect x="300" y="220" width="600" height="280" rx="16" fill="#fef2f2" stroke="#fecaca"/>
+  <text x="600" y="300" text-anchor="middle" fill="#b91c1c" font-size="28" font-weight="800">Access denied</text>
+  <text x="600" y="350" text-anchor="middle" fill="#7f1d1d" font-size="16">Not available in your country</text>
+  <text x="600" y="400" text-anchor="middle" fill="#991b1b" font-size="15">或页面一直转圈、连接超时</text>
+  <text x="600" y="450" text-anchor="middle" fill="#71717a" font-size="14">先检查能否打开 google.com，再换稳定节点后无痕窗口重开</text>
+
+  <text x="1180" y="740" text-anchor="end" fill="#a1a1aa" font-size="13">示意图 · 常见打不开画面</text>
+</svg>

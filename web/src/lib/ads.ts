@@ -1,58 +1,150 @@
 /**
- * 左右侧栏境外 VPS 联盟位。
+ * 左右侧栏正规联盟位（境外 VPS + 品牌 VPN）。
  *
- * 提成规则：必须换成你自己在厂商后台生成的联盟链接。
- * 现在若 href 为空，会跳到官网产品页，访客能买，但你没有佣金。
+ * 提成：把各厂后台生成的完整联盟链接填进 affiliateHrefs。
+ * 空着则跳到官网产品页，能买但没有你的佣金。
  *
  * 申请：
- * - Vultr  https://www.vultr.com/affiliates/
- *   链接形如 https://www.vultr.com/?ref=你的ID
- * - 搬瓦工 https://bandwagonhost.com/affiliates-info.php
- *   链接形如 https://bandwagonhost.com/aff.php?aff=你的ID
+ * - Vultr         https://www.vultr.com/affiliates/
+ * - 搬瓦工        https://bandwagonhost.com/affiliates-info.php
+ * - DigitalOcean  https://www.digitalocean.com/affiliates
+ * - RackNerd      https://www.racknerd.com/ （后台 Affiliates）
+ * - NordVPN       https://nordvpn.com/affiliates/
+ * - Surfshark     https://surfshark.com/affiliate
  */
+import { adGuides, type AdGuideStep } from "./ads-guide";
+
 export const affiliateHrefs = {
   vultr: process.env.NEXT_PUBLIC_AD_VULTR_HREF?.trim() || "",
   bandwagon: process.env.NEXT_PUBLIC_AD_BWH_HREF?.trim() || "",
+  digitalocean: process.env.NEXT_PUBLIC_AD_DO_HREF?.trim() || "",
+  racknerd: process.env.NEXT_PUBLIC_AD_RACKNERD_HREF?.trim() || "",
+  nordvpn: process.env.NEXT_PUBLIC_AD_NORD_HREF?.trim() || "",
+  surfshark: process.env.NEXT_PUBLIC_AD_SURFSHARK_HREF?.trim() || "",
 };
 
+export type AdKind = "vps" | "vpn";
+export type AdTheme =
+  | "vultr"
+  | "bwh"
+  | "do"
+  | "racknerd"
+  | "nord"
+  | "surfshark";
+
 export type AdSlot = {
-  id: "vultr" | "bandwagon";
-  name: string;
+  id: keyof typeof affiliateHrefs;
+  theme: AdTheme;
+  kind: AdKind;
+  nameZh: string;
+  nameEn: string;
   href: string;
   taglineZh: string;
   taglineEn: string;
   ctaZh: string;
   ctaEn: string;
+  guide: AdGuideStep[];
 };
 
-const PRODUCT_PAGES = {
+const PRODUCT_PAGES: Record<keyof typeof affiliateHrefs, string> = {
   vultr: "https://www.vultr.com/products/cloud-compute/",
   bandwagon: "https://bandwagonhost.com/vps-hosting.php",
-} as const;
+  digitalocean: "https://www.digitalocean.com/pricing",
+  racknerd: "https://www.racknerd.com/vps",
+  nordvpn: "https://nordvpn.com/",
+  surfshark: "https://surfshark.com/",
+};
 
-function hrefFor(
-  id: keyof typeof affiliateHrefs,
-): string {
+function hrefFor(id: keyof typeof affiliateHrefs): string {
   return affiliateHrefs[id] || PRODUCT_PAGES[id];
 }
 
-export const adSlots: { left: AdSlot; right: AdSlot } = {
-  left: {
+const catalog: AdSlot[] = [
+  {
     id: "vultr",
-    name: "Vultr",
+    theme: "vultr",
+    kind: "vps",
+    nameZh: "Vultr",
+    nameEn: "Vultr",
     href: hrefFor("vultr"),
-    taglineZh: "东京 / 新加坡 / 美西云服务器，按小时计费",
-    taglineEn: "Cloud VPS in Tokyo, Singapore, and the US West",
-    ctaZh: "开通境外服务器",
-    ctaEn: "Get a cloud VPS",
+    taglineZh: "东京 / 新加坡 VPS",
+    taglineEn: "VPS in Tokyo and Singapore",
+    ctaZh: "去开通",
+    ctaEn: "Get VPS",
+    guide: adGuides.vultr,
   },
-  right: {
+  {
+    id: "digitalocean",
+    theme: "do",
+    kind: "vps",
+    nameZh: "DigitalOcean",
+    nameEn: "DigitalOcean",
+    href: hrefFor("digitalocean"),
+    taglineZh: "开发者常用云主机",
+    taglineEn: "Cloud for developers",
+    ctaZh: "去开通",
+    ctaEn: "Get VPS",
+    guide: adGuides.digitalocean,
+  },
+  {
+    id: "racknerd",
+    theme: "racknerd",
+    kind: "vps",
+    nameZh: "RackNerd",
+    nameEn: "RackNerd",
+    href: hrefFor("racknerd"),
+    taglineZh: "美国便宜年付 VPS",
+    taglineEn: "Budget US yearly VPS",
+    ctaZh: "去开通",
+    ctaEn: "Get VPS",
+    guide: adGuides.racknerd,
+  },
+  {
     id: "bandwagon",
-    name: "BandwagonHost",
+    theme: "bwh",
+    kind: "vps",
+    nameZh: "搬瓦工",
+    nameEn: "Bandwagon",
     href: hrefFor("bandwagon"),
-    taglineZh: "搬瓦工：香港 / 美西 VPS，华人常用线路",
-    taglineEn: "BandwagonHost VPS in Hong Kong and the US West",
-    ctaZh: "开通境外服务器",
-    ctaEn: "Get a cloud VPS",
+    taglineZh: "香港 / 美西 VPS",
+    taglineEn: "VPS in HK and US West",
+    ctaZh: "去开通",
+    ctaEn: "Get VPS",
+    guide: adGuides.bandwagon,
   },
+  {
+    id: "nordvpn",
+    theme: "nord",
+    kind: "vpn",
+    nameZh: "NordVPN",
+    nameEn: "NordVPN",
+    href: hrefFor("nordvpn"),
+    taglineZh: "品牌 VPN 订阅",
+    taglineEn: "Brand VPN subscription",
+    ctaZh: "去订阅",
+    ctaEn: "Subscribe",
+    guide: adGuides.nordvpn,
+  },
+  {
+    id: "surfshark",
+    theme: "surfshark",
+    kind: "vpn",
+    nameZh: "Surfshark",
+    nameEn: "Surfshark",
+    href: hrefFor("surfshark"),
+    taglineZh: "不限设备 VPN",
+    taglineEn: "VPN, unlimited devices",
+    ctaZh: "去订阅",
+    ctaEn: "Subscribe",
+    guide: adGuides.surfshark,
+  },
+];
+
+export const adRails = {
+  left: catalog.filter((s) =>
+    s.id === "vultr" || s.id === "digitalocean" || s.id === "racknerd",
+  ),
+  right: catalog.filter((s) =>
+    s.id === "bandwagon" || s.id === "nordvpn" || s.id === "surfshark",
+  ),
 };

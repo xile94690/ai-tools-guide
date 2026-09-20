@@ -20,6 +20,15 @@ body {
     sans-serif;
 }
 
+.home-hero {
+  border-bottom: 1px solid rgb(228 228 231 / 0.8);
+  background:
+    radial-gradient(920px 280px at 8% -10%, rgb(37 99 235 / 0.16), transparent 58%),
+    radial-gradient(780px 260px at 92% 0%, rgb(249 115 22 / 0.14), transparent 55%),
+    radial-gradient(640px 200px at 50% 120%, rgb(14 165 233 / 0.1), transparent 60%),
+    linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
 .ad-rail {
   display: none;
 }
@@ -30,8 +39,12 @@ body {
     top: 5.75rem;
     z-index: 20;
     display: flex;
+    flex-direction: column;
+    gap: 14px;
     width: min(10vw - 12px, 168px);
-    height: min(36rem, calc(100vh - 7.5rem));
+    max-height: calc(100vh - 7rem);
+    overflow: visible;
+    padding: 2px;
   }
 
   .ad-rail-left {
@@ -41,4 +54,352 @@ body {
   .ad-rail-right {
     right: 6px;
   }
+}
+
+.ad-card {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 0.45);
+  border-radius: 1rem;
+  padding: 0.7rem 0.7rem 0.75rem;
+  color: #fff;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  font: inherit;
+  background: transparent;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.12);
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.ad-card:hover {
+  z-index: 1;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgb(0 0 0 / 0.16);
+}
+
+.ad-card-fill {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.ad-card-vultr {
+  background: linear-gradient(165deg, #041830 0%, #155eef 48%, #22d3ee 100%);
+}
+
+.ad-card-bwh {
+  background: linear-gradient(160deg, #7c2d12 0%, #ea580c 40%, #fb7185 72%, #fbbf24 100%);
+}
+
+.ad-card-do {
+  background: linear-gradient(165deg, #003366 0%, #0069ff 52%, #31a8ff 100%);
+}
+
+.ad-card-racknerd {
+  background: linear-gradient(165deg, #1a0508 0%, #9f1239 48%, #fb7185 100%);
+}
+
+.ad-card-nord {
+  background: linear-gradient(165deg, #07111f 0%, #1d4ed8 46%, #60a5fa 100%);
+}
+
+.ad-card-surfshark {
+  background: linear-gradient(165deg, #042f2e 0%, #0f766e 48%, #2dd4bf 100%);
+}
+
+.ad-card-glass {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    180deg,
+    rgb(255 255 255 / 0.28) 0%,
+    rgb(255 255 255 / 0.08) 100%
+  );
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+}
+
+.ad-card-shine,
+.ad-card-grid,
+.ad-card-orb {
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.ad-card-shine {
+  inset: 0;
+  background:
+    radial-gradient(120% 80% at 0% 0%, rgb(255 255 255 / 0.22), transparent 56%),
+    radial-gradient(90% 70% at 110% 90%, rgb(255 255 255 / 0.12), transparent 52%);
+}
+
+.ad-card-grid {
+  inset: 0;
+  opacity: 0.12;
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.55) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.55) 1px, transparent 1px);
+  background-size: 13px 13px;
+  mask-image: linear-gradient(to bottom, black, transparent 82%);
+}
+
+.ad-card-orb {
+  border-radius: 999px;
+  filter: blur(10px);
+}
+
+.ad-card-orb-a {
+  top: -1rem;
+  right: -0.8rem;
+  width: 3.2rem;
+  height: 3.2rem;
+  background: rgb(255 255 255 / 0.28);
+}
+
+.ad-card-orb-b {
+  bottom: -1rem;
+  left: -0.8rem;
+  width: 2.8rem;
+  height: 2.8rem;
+  background: rgb(255 255 255 / 0.16);
+}
+
+.ad-card-badge,
+.ad-card-mark,
+.ad-card-name,
+.ad-card-tagline,
+.ad-card-cta {
+  position: relative;
+  z-index: 3;
+}
+
+.ad-card-badge {
+  width: fit-content;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.18);
+  padding: 0.12rem 0.4rem;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.ad-card-mark {
+  margin-top: 0.7rem;
+  color: rgb(255 255 255 / 0.95);
+  filter: drop-shadow(0 6px 10px rgb(0 0 0 / 0.25));
+}
+
+.ad-card-name {
+  margin-top: 0.45rem;
+  font-size: 1.05rem;
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+  text-shadow: 0 1px 8px rgb(0 0 0 / 0.25);
+}
+
+.ad-card-tagline {
+  margin-top: 0.35rem;
+  font-size: 11px;
+  line-height: 1.35;
+  color: rgb(255 255 255 / 0.92);
+  overflow-wrap: anywhere;
+  text-shadow: 0 1px 6px rgb(0 0 0 / 0.22);
+}
+
+.ad-card-cta {
+  margin-top: 0.75rem;
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  align-items: center;
+  border-radius: 999px;
+  background: #fff;
+  padding: 0.32rem 0.65rem;
+  font-size: 11px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.ad-guide {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+}
+
+.ad-guide-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgb(24 24 27 / 0.45);
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+}
+
+.ad-guide-panel {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  max-height: min(88vh, 840px);
+  width: min(640px, 100%);
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgb(228 228 231);
+  border-radius: 1.25rem;
+  background: #fff;
+  box-shadow: 0 24px 64px rgb(0 0 0 / 0.22);
+}
+
+.ad-guide-head {
+  position: relative;
+  border-bottom: 1px solid rgb(244 244 245);
+  padding: 1.1rem 3rem 1rem 1.25rem;
+}
+
+.ad-guide-x {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  display: flex;
+  height: 2rem;
+  width: 2rem;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgb(82 82 91);
+  cursor: pointer;
+}
+
+.ad-guide-x:hover {
+  background: rgb(244 244 245);
+  color: rgb(24 24 27);
+}
+
+.ad-guide-kicker {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: rgb(113 113 122);
+}
+
+.ad-guide-title {
+  margin-top: 0.2rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: rgb(24 24 27);
+}
+
+.ad-guide-hint {
+  margin-top: 0.35rem;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgb(82 82 91);
+}
+
+.ad-guide-body {
+  min-height: 0;
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.5rem 1.25rem 1rem;
+}
+
+.ad-guide-steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ad-guide-step {
+  padding: 1rem 0;
+  border-bottom: 1px solid rgb(244 244 245);
+}
+
+.ad-guide-step:last-child {
+  border-bottom: 0;
+}
+
+.ad-guide-step-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+
+.ad-guide-num {
+  display: flex;
+  height: 1.5rem;
+  width: 1.5rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgb(24 24 27);
+  font-size: 12px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.ad-guide-step-head h3 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: rgb(24 24 27);
+}
+
+.ad-guide-text {
+  margin: 0.45rem 0 0.15rem 2.2rem;
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgb(63 63 70);
+}
+
+.ad-guide-foot {
+  display: flex;
+  gap: 0.75rem;
+  border-top: 1px solid rgb(244 244 245);
+  padding: 0.9rem 1.25rem 1rem;
+}
+
+.ad-guide-cancel,
+.ad-guide-go {
+  display: inline-flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.7rem 1rem;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.ad-guide-cancel {
+  border: 1px solid rgb(228 228 231);
+  background: #fff;
+  color: rgb(63 63 70);
+  cursor: pointer;
+}
+
+.ad-guide-go {
+  background: rgb(24 24 27);
+  color: #fff;
+}
+
+.ad-guide-go:hover {
+  background: rgb(39 39 42);
 }

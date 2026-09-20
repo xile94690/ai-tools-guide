@@ -8,6 +8,7 @@ import { localizedPath } from "@/lib/paths";
 import { tools, featuredTools } from "@/lib/tools";
 import { ToolCard } from "@/components/ToolCard";
 import SearchBox from "@/components/SearchBox";
+import TypewriterTitle from "@/components/TypewriterTitle";
 import { useLocale } from "@/components/LocaleProvider";
 
 export default function HomePage() {
@@ -16,17 +17,17 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-1 flex-col">
-      <section className="bg-zinc-900 text-white">
+      <section className="home-hero">
         <div className="shell py-14 text-center">
-          <h1 className="text-3xl font-black sm:text-4xl">{d.siteName}</h1>
-          <p className="mx-auto mt-3 max-w-xl text-zinc-300">{d.tagline}</p>
+          <TypewriterTitle text={d.siteName} />
+          <p className="mx-auto mt-3 max-w-xl text-zinc-500">{d.tagline}</p>
           <div className="mx-auto mt-6 max-w-xl">
             <Suspense
               fallback={
-                <div className="h-12 rounded-full bg-zinc-800" />
+                <div className="h-12 rounded-full border border-zinc-200 bg-white" />
               }
             >
-              <SearchBox locale={locale} />
+              <SearchBox locale={locale} tone="page" />
             </Suspense>
           </div>
         </div>

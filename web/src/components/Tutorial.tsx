@@ -51,6 +51,37 @@ function StepList({ steps, locale }: { steps: Step[]; locale: Locale }) {
   );
 }
 
+function Prereq({
+  items,
+  locale,
+}: {
+  items: { label: string; detail: string }[];
+  locale: Locale;
+}) {
+  const d = t(locale);
+  return (
+    <section id="prereq" className="mt-8 scroll-mt-24">
+      <SectionTitle icon={IconList}>{d.prereq}</SectionTitle>
+      <p className="mt-2 text-sm text-zinc-500">{d.prereqHint}</p>
+      <ol className="mt-4 divide-y divide-zinc-200 overflow-hidden rounded-2xl border border-zinc-200 bg-white">
+        {items.map((item, i) => (
+          <li key={item.label} className="flex gap-4 px-5 py-4">
+            <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-zinc-900 text-xs font-bold text-white">
+              {i + 1}
+            </span>
+            <div className="min-w-0">
+              <p className="font-bold text-zinc-900">{item.label}</p>
+              <p className="mt-1 text-sm leading-6 text-zinc-600">
+                <RichText text={item.detail} />
+              </p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
+}
+
 function Plans({ plans, locale }: { plans: Plan[]; locale: Locale }) {
   const d = t(locale);
   return (
@@ -213,7 +244,15 @@ function BlockView({ block, locale }: { block: Block; locale: Locale }) {
         </div>
       );
     case "shot":
-      return <Shot src={block.src} caption={block.caption} hint={d.shotHint} />;
+      return (
+        <Shot
+          src={block.src}
+          caption={block.caption}
+          hint={d.shotHint}
+          label={d.shotLabel}
+          guide={d.shotGuide}
+        />
+      );
     case "note":
       return (
         <div className="my-3 flex gap-3 rounded-xl border border-blue-100 bg-blue-50 px-4 py-3">
@@ -260,12 +299,14 @@ export default function Tutorial({
   const d = t(locale);
   const plans = data.plans ?? [];
   const envCheck = data.envCheck ?? [];
+  const prereq = data.prereq ?? [];
   const desktop = data.desktop ?? [];
   const cli = data.cli ?? [];
   const dual = desktop.length > 0 && cli.length > 0;
   const looseSteps = desktop.length === 0 && cli.length === 0 ? data.steps : [];
 
   const sections = [
+    { id: "prereq", label: d.prereq, show: prereq.length > 0 },
     { id: "plans", label: d.plans, show: plans.length > 0 },
     { id: "env", label: d.envCheck, show: true },
     { id: "desktop", label: d.desktopUsage, show: desktop.length > 0 },
@@ -287,6 +328,7 @@ export default function Tutorial({
           </span>
         </div>
 
+        {prereq.length > 0 && <Prereq items={prereq} locale={locale} />}
         {plans.length > 0 && <Plans plans={plans} locale={locale} />}
         <EnvChecks
           items={envCheck}
@@ -299,6 +341,9 @@ export default function Tutorial({
             {d.dualHint}
           </p>
         )}
+        <p className="mt-10 rounded-2xl border border-emerald-100 bg-emerald-50 px-5 py-3 text-sm leading-6 text-emerald-950">
+          {d.beginnerHint}
+        </p>
 
         {desktop.length > 0 && (
           <section id="desktop" className="mt-10 scroll-mt-24">

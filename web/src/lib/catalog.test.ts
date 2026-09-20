@@ -32,6 +32,10 @@ describe("catalog integrity", () => {
     expect(extra).toEqual([]);
   });
 
+  it("keeps beginner prereq on ChatGPT instead of wiping it", () => {
+    expect(getTutorial("chatgpt", "zh")?.prereq.length).toBeGreaterThan(0);
+  });
+
   it("gives every tool plans and an environment check", () => {
     for (const tool of tools) {
       const tut = getTutorial(tool.slug, "zh");

@@ -36,6 +36,10 @@ const zh = {
   langEn: "English",
   langSwitch: "切换语言",
   prereq: "前提准备",
+  prereqHint: "先对一下这几条。标了「必需」的没齐，后面步骤会卡住。",
+  beginnerHint: "下面按编号一步一步做。带图的步骤：先看图，再在自己屏幕上找同样的按钮。",
+  shotLabel: "示意图",
+  shotGuide: "对照这张图操作",
   stepsTitle: "详细步骤",
   plans: "套餐类型",
   plansHint: "价格以官网当前页为准，这里只帮你看清档位差什么",
@@ -74,7 +78,7 @@ const zh = {
   copy: "复制",
   copied: "已复制",
   expected: "预期输出",
-  shotHint: "此处需要截图",
+  shotHint: "这里应有一张对照图。若未显示，请按文字步骤操作。",
   detailed: "保姆级教程",
   ccSwitchBadge: "可配 CC Switch",
   loginPaths: "两种登录方式",
@@ -94,6 +98,11 @@ const zh = {
   notFoundTitle: "页面不存在",
   notFoundBody: "这个地址没有对应的页面，回首页看看其他工具吧。",
   adSponsor: "推广",
+  adCancel: "取消",
+  adGo: "去官网开通",
+  adGuideHint:
+    "先按编号对照示意图。看懂后再点底部按钮去官网，避免进错站点。",
+  adGuideTitle: (name: string) => `怎么开通 ${name}`,
 };
 
 const en: { [K in keyof typeof zh]: (typeof zh)[K] } = {
@@ -133,6 +142,10 @@ const en: { [K in keyof typeof zh]: (typeof zh)[K] } = {
   langEn: "English",
   langSwitch: "Switch language",
   prereq: "Before you start",
+  prereqHint: "Check these first. If a required item is missing, later steps will fail.",
+  beginnerHint: "Follow the numbered steps. When you see a picture, match the same button on your screen.",
+  shotLabel: "Illustration",
+  shotGuide: "Match this on your screen",
   stepsTitle: "Step by step",
   plans: "Plans",
   plansHint: "Prices change — treat this as a map of tiers, then confirm on the official site",
@@ -171,7 +184,7 @@ const en: { [K in keyof typeof zh]: (typeof zh)[K] } = {
   copy: "Copy",
   copied: "Copied",
   expected: "Expected output",
-  shotHint: "Screenshot needed here",
+  shotHint: "A matching illustration should appear here. Follow the text if it is missing.",
   detailed: "Step-by-step",
   ccSwitchBadge: "Works with CC Switch",
   loginPaths: "Two ways to sign in",
@@ -191,6 +204,11 @@ const en: { [K in keyof typeof zh]: (typeof zh)[K] } = {
   notFoundTitle: "Page not found",
   notFoundBody: "This address does not exist. Head home and browse the tools.",
   adSponsor: "Sponsored",
+  adCancel: "Cancel",
+  adGo: "Continue to site",
+  adGuideHint:
+    "Match the numbered illustrations first. Then use the button below to open the official site.",
+  adGuideTitle: (name: string) => `How to get ${name}`,
 };
 
 export const dict = { zh, en };

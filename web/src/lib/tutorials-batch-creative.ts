@@ -83,6 +83,11 @@ export const creativeTutorials: TutorialSet = {
               text: "登录本身是免费的。只有订阅之后才能真正开始生成。",
             },
             {
+              kind: "shot",
+              src: "/shots/midjourney/pricing.svg",
+              caption: "登录后还要先订阅才能画图：Basic 起，没有免费额度（示意图）",
+            },
+            {
               kind: "warn",
               text: "国内直连打不开 midjourney.com。登录页一直转圈或报错通常是网络问题，先确认网络环境，第 3 步支付失败也多半是同一个原因。",
             },
@@ -829,6 +834,11 @@ Cancel: Manage Subscription page -> Cancel Plan`,
               kind: "note",
               text: "新用户通常有注册赠送额度，之后每天登录还能在活动页领取积分，够日常练手。",
             },
+            {
+              kind: "shot",
+              src: "/shots/jimeng/app.svg",
+              caption: "即梦登录：抖音扫码或手机号验证码，认准官方入口（示意图）",
+            },
           ],
         },
         {
@@ -1488,6 +1498,11 @@ Cancel: turn off auto-renewal on the member page; benefits last until the period
               kind: "warn",
               text: "国内直连打不开，先确认网络环境。注册页转圈、验证邮件收不到，多半是网络问题。",
             },
+            {
+              kind: "shot",
+              src: "/shots/runway/site.png",
+              caption: "Runway 注册：邮箱或 Google / Apple，国内打不开先换网络（示意图）",
+            },
           ],
         },
         {
@@ -2136,6 +2151,11 @@ Cancel: manage the subscription on your account page`,
             {
               kind: "warn",
               text: "国内直连打不开 suno.com，登录转圈或播放没声音都可能是网络问题，先确认网络环境。",
+            },
+            {
+              kind: "shot",
+              src: "/shots/suno/site.png",
+              caption: "Suno 登录：邮箱或 Google / Apple，登录后从 Create 开始（示意图）",
             },
           ],
         },

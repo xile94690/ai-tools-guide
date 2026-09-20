@@ -48,6 +48,11 @@ export const chatTutorials: TutorialSet = {
               kind: "note",
               text: "打不开就先检查网络环境（见第 3 步）。如果页面一直转圈、报 `Access denied`、`429` 或「该地区不可用」，基本都是出口 IP 被判定的地区不支持，不是网站坏了。",
             },
+            {
+              kind: "shot",
+              src: "/shots/chatgpt/official.svg",
+              caption: "认准地址栏是 chatgpt.com，右上角 Sign up 才是官方注册（示意图）",
+            },
           ],
         },
         {
@@ -96,6 +101,11 @@ export const chatTutorials: TutorialSet = {
               kind: "note",
               text: "登录成功后电脑浏览器不需要安装就能对话。桌面端用同一账号、同一网络登录即可。",
             },
+            {
+              kind: "shot",
+              src: "/shots/chatgpt/denied.svg",
+              caption: "打不开时常见画面：Access denied / 该地区不可用。先换网络再无痕窗口重开（示意图）",
+            },
           ],
         },
         {
@@ -113,6 +123,11 @@ export const chatTutorials: TutorialSet = {
             {
               kind: "warn",
               text: "只装官网这个包。任何第三方「ChatGPT 客户端 / 加速器」若要你填 OpenAI 密码，一律当钓鱼。",
+            },
+            {
+              kind: "shot",
+              src: "/shots/chatgpt/download.svg",
+              caption: "只从 chatgpt.com/download 选 macOS 或 Windows（示意图）",
             },
           ],
         },
@@ -379,6 +394,11 @@ export const chatTutorials: TutorialSet = {
               kind: "note",
               text: "If the page won't load, check your network first (step 3). Endless spinners, `Access denied`, `429` or \"not available in your country\" almost always mean the exit IP is in an unsupported region — the site isn't down.",
             },
+            {
+              kind: "shot",
+              src: "/shots/chatgpt/official.svg",
+              caption: "Address bar must read chatgpt.com; Sign up is top-right (illustration)",
+            },
           ],
         },
         {
@@ -427,6 +447,11 @@ export const chatTutorials: TutorialSet = {
               kind: "note",
               text: "Once signed in, the web app is fully usable with no install. Use the mobile app on the same network, otherwise it will spin forever too.",
             },
+            {
+              kind: "shot",
+              src: "/shots/chatgpt/denied.svg",
+              caption: "Typical failure: Access denied / not available in your country. Switch network, then retry in a private window (illustration)",
+            },
           ],
         },
         {
@@ -443,6 +468,11 @@ export const chatTutorials: TutorialSet = {
             {
               kind: "warn",
               text: "Only the official installer. Third-party “ChatGPT clients” that ask for your OpenAI password are phishing.",
+            },
+            {
+              kind: "shot",
+              src: "/shots/chatgpt/download.svg",
+              caption: "Download only from chatgpt.com/download — pick macOS or Windows (illustration)",
             },
           ],
         },
@@ -749,6 +779,11 @@ export const chatTutorials: TutorialSet = {
             {
               kind: "warn",
               text: "不要用网上来路不明的「接码平台」号码批量注册。这类号码会被大量账号共用，注册完很快就会被封，账号里积累的对话也一起没了。",
+            },
+            {
+              kind: "shot",
+              src: "/shots/claude/site.png",
+              caption: "点右上角 Sign up，用邮箱链接或 Google，不要找「Claude 中文镜像」（示意图）",
             },
           ],
         },
@@ -1404,6 +1439,11 @@ Output: every answer has three parts — conclusion / evidence / next step.`,
             {
               kind: "note",
               text: "新账号注册完会直接进入对话界面，历史记录存在云端，换设备登录同一个账号就能看到之前的对话。",
+            },
+            {
+              kind: "shot",
+              src: "/shots/deepseek/chat-ui.svg",
+              caption: "登录页选「手机号 + 验证码」最快；国内号可直接收短信（示意图）",
             },
           ],
         },

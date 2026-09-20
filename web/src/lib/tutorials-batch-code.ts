@@ -80,6 +80,11 @@ export const codeTutorials: TutorialSet = {
               kind: "warn",
               text: "Windows 上建议用安装程序给的默认目录，不要装到需要管理员权限的位置，否则后续自动更新可能失败。",
             },
+            {
+              kind: "shot",
+              src: "/shots/cursor/site.png",
+              caption: "Cursor 官网 Download：Windows 选 .exe，一路 Next 即可（示意图）",
+            },
           ],
         },
         {
@@ -103,6 +108,11 @@ export const codeTutorials: TutorialSet = {
             {
               kind: "note",
               text: "公司或学校电脑登录失败，多半是代理问题：Cursor 的请求走 HTTPS，需要能访问 cursor.com 与 api2.cursor.sh。",
+            },
+            {
+              kind: "shot",
+              src: "/shots/cursor/app.svg",
+              caption: "首次启动：先选主题，再 Sign in。Skip 会关掉全部 AI 功能（示意图）",
             },
           ],
         },
