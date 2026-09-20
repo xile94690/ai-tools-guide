@@ -88,6 +88,16 @@ const zh = {
   adGuideHint:
     "先按编号对照示意图。看懂后再点底部按钮去官网，避免进错站点。",
   adGuideTitle: (name: string) => `怎么开通 ${name}`,
+  adLeaveTitle: "即将离开 AI 工具大全",
+  adLeaveTo: (name: string) => `你将前往第三方网站：${name}`,
+  adLeaveNote:
+    "本站与该网站没有运营关系，不对它的服务、价格和稳定性负责，请自行判断后再继续。",
+  adChecking: "正在检查链接…",
+  adCheckOk: "链接可以访问，确认后继续前往。",
+  adCheckFail: "这个链接现在打不开，可能已更换域名或停止服务。",
+  adCheckRetry: "重新检查",
+  adContinue: "继续前往",
+  adStayHere: "留在此页",
 };
 
 const en: { [K in keyof typeof zh]: (typeof zh)[K] } = {
@@ -179,6 +189,17 @@ const en: { [K in keyof typeof zh]: (typeof zh)[K] } = {
   adGuideHint:
     "Match the numbered illustrations first. Then use the button below to open the official site.",
   adGuideTitle: (name: string) => `How to get ${name}`,
+  adLeaveTitle: "You are leaving AI Tools Guide",
+  adLeaveTo: (name: string) => `You are about to open a third-party site: ${name}`,
+  adLeaveNote:
+    "We do not run that site and are not responsible for its service, pricing or reliability. Please use your own judgement before continuing.",
+  adChecking: "Checking the link…",
+  adCheckOk: "The link responds. Continue when you are ready.",
+  adCheckFail:
+    "This link is unreachable right now — the domain may have changed or the service may have stopped.",
+  adCheckRetry: "Check again",
+  adContinue: "Continue",
+  adStayHere: "Stay here",
 };
 
 export const dict = { zh, en };

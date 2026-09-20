@@ -44,6 +44,8 @@ export type AdSlot = {
   ctaEn: string;
   /** 分步开通引导。留空则卡片直接跳转 href，不弹层。 */
   guide?: AdGuideStep[];
+  /** 点击后先弹「即将离开」中转页（机场类跑路/换域名风险高，默认加上）。 */
+  gate?: boolean;
 };
 
 const PRODUCT_PAGES: Record<keyof typeof affiliateHrefs, string> = {
@@ -95,6 +97,7 @@ const catalog: AdSlot[] = [
     taglineEn: "Multi-region nodes, every platform",
     ctaZh: "去开通",
     ctaEn: "Get started",
+    gate: true,
   },
   {
     id: "flybit",
@@ -107,6 +110,7 @@ const catalog: AdSlot[] = [
     taglineEn: "Global nodes, one-tap import",
     ctaZh: "去开通",
     ctaEn: "Get started",
+    gate: true,
   },
 ];
 

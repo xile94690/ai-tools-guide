@@ -5,6 +5,7 @@ import { categories } from "./site";
 import { getTool, tools, toolIcon } from "./tools";
 import { getTutorial, tutorials } from "./tutorials";
 import { dict } from "./i18n";
+import { adRails } from "./ads";
 
 const publicDir = path.join(process.cwd(), "public");
 
@@ -83,5 +84,14 @@ describe("catalog integrity", () => {
 
   it("keeps zh/en dictionary keys in sync", () => {
     expect(Object.keys(dict.en).sort()).toEqual(Object.keys(dict.zh).sort());
+  });
+
+  it("gates every proxy ad slot behind the leaving notice", () => {
+    const slots = [...adRails.left, ...adRails.right];
+    const proxies = slots.filter((slot) => slot.kind === "proxy");
+    expect(proxies.length).toBeGreaterThan(0);
+    for (const slot of proxies) {
+      expect(slot.gate, slot.id).toBe(true);
+    }
   });
 });

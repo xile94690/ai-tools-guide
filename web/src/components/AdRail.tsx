@@ -5,6 +5,7 @@ import { t } from "@/lib/i18n";
 import { adRails, type AdKind, type AdSlot } from "@/lib/ads";
 import { useLocale } from "@/components/LocaleProvider";
 import AdGuideModal from "@/components/AdGuideModal";
+import OutboundGate from "@/components/OutboundGate";
 
 function CloudMark() {
   return (
@@ -57,9 +58,11 @@ function Mark({ kind }: { kind: AdKind }) {
 function AdCard({
   slot,
   onOpen,
+  onGate,
 }: {
   slot: AdSlot;
   onOpen: (slot: AdSlot) => void;
+  onGate: (slot: AdSlot) => void;
 }) {
   const { locale } = useLocale();
   const d = t(locale);
@@ -87,14 +90,29 @@ function AdCard({
     </>
   );
 
-  // 没有分步引导的位直接跳转，不再弹层。
-  if (!hasGuide) {
+  // 有分步引导的走弹层。
+  if (hasGuide) {
+    return (
+      <button type="button" className="ad-card" onClick={() => onOpen(slot)}>
+        {body}
+      </button>
+    );
+  }
+
+  // 机场类先过「即将离开」中转页，其余直接跳转。
+  if (slot.gate) {
     return (
       <a
         className="ad-card"
         href={slot.href}
         target="_blank"
         rel="sponsored noopener noreferrer"
+        onClick={(e) => {
+          // Cmd / Ctrl / Shift / Alt + 点击仍然直接打开，不拦。
+          if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+          e.preventDefault();
+          onGate(slot);
+        }}
       >
         {body}
       </a>
@@ -102,14 +120,20 @@ function AdCard({
   }
 
   return (
-    <button type="button" className="ad-card" onClick={() => onOpen(slot)}>
+    <a
+      className="ad-card"
+      href={slot.href}
+      target="_blank"
+      rel="sponsored noopener noreferrer"
+    >
       {body}
-    </button>
+    </a>
   );
 }
 
 export default function AdRails() {
   const [open, setOpen] = useState<AdSlot | null>(null);
+  const [gate, setGate] = useState<AdSlot | null>(null);
   const { locale } = useLocale();
   const d = t(locale);
 
@@ -117,19 +141,30 @@ export default function AdRails() {
     <>
       <aside className="ad-rail ad-rail-left" aria-label={d.adSponsor}>
         {adRails.left.map((slot) => (
-          <AdCard key={slot.id} slot={slot} onOpen={setOpen} />
+          <AdCard
+            key={slot.id}
+            slot={slot}
+            onOpen={setOpen}
+            onGate={setGate}
+          />
         ))}
         <p className="ad-rail-note">{d.adRailNote}</p>
       </aside>
       <aside className="ad-rail ad-rail-right" aria-label={d.adSponsor}>
         {adRails.right.map((slot) => (
-          <AdCard key={slot.id} slot={slot} onOpen={setOpen} />
+          <AdCard
+            key={slot.id}
+            slot={slot}
+            onOpen={setOpen}
+            onGate={setGate}
+          />
         ))}
         <p className="ad-rail-note">{d.adRailNote}</p>
       </aside>
       {open ? (
         <AdGuideModal slot={open} onClose={() => setOpen(null)} />
       ) : null}
+      {gate ? <OutboundGate slot={gate} onClose={() => setGate(null)} /> : null}
     </>
   );
 }
